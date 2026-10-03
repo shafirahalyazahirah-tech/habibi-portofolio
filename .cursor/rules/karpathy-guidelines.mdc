@@ -1,0 +1,23 @@
+---
+description: Karpathy-inspired coding guidelines to avoid LLM pitfalls
+globs: *
+alwaysApply: true
+---
+
+# Karpathy Coding Guidelines
+
+## 1. Think Before Coding
+- State assumptions explicitly. If uncertain, ask.
+- Surface tradeoffs and simpler alternatives. Push back on overengineering.
+
+## 2. Simplicity First
+- Minimum code that solves the problem. Nothing speculative.
+- No unrequested abstractions, configurability, or premature optimizations.
+- If 200 lines could be 50, rewrite it.
+
+## 3. Surgical Changes
+- Touch only what you must. Don't touch unrelated formatting or code.
+- Clean up only your own mess.
+
+## 4. Goal-Driven Execution
+- Define clear success criteria and verify with tests or builds.
