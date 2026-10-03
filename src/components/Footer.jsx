@@ -36,11 +36,34 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-8 pt-6 border-t border-zinc-100 flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] text-zinc-400">
+        <div className="mt-8 pt-6 border-t border-zinc-100 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] text-zinc-400">
           <p>© {CURRENT_YEAR} {personalInfo.name}. All rights reserved.</p>
-          <p>
-            React • Vite • Tailwind CSS • Vercel Ready
-          </p>
+          <div className="flex items-center gap-4 text-zinc-500">
+            <a
+              href={personalInfo.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-zinc-900 transition-colors"
+            >
+              Instagram
+            </a>
+            <a
+              href={personalInfo.facebook}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-zinc-900 transition-colors"
+            >
+              Facebook
+            </a>
+            <a
+              href={personalInfo.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-zinc-900 transition-colors"
+            >
+              LinkedIn
+            </a>
+          </div>
         </div>
       </div>
     </footer>

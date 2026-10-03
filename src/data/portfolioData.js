@@ -10,8 +10,9 @@ export const personalInfo = {
   email: 'habibinurrohman.work@gmail.com',
   location: 'Tasikmalaya, Jawa Barat, Indonesia',
   availability: 'Terbuka untuk konsultasi & proyek paruh waktu',
-  linkedin: 'https://linkedin.com/in/habibi-nurrohman',
-  github: 'https://github.com/habibinurrohman',
+  instagram: 'https://www.instagram.com/hbibinrhmnn/',
+  facebook: 'https://web.facebook.com/hbibinrhmn',
+  linkedin: 'https://www.linkedin.com/in/hbibinrhmn/',
 };
 
 export const statsData = [
