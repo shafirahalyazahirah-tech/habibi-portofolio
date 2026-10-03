@@ -3,14 +3,8 @@ import { statsData } from '../data/portfolioData';
 
 export default function Stats() {
   return (
-    <section className="py-12 bg-zinc-50 border-b border-zinc-200">
+    <section className="py-10 bg-zinc-50 border-b border-zinc-200">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-left mb-6">
-          <p className="text-xs font-mono uppercase tracking-wider text-zinc-500 font-semibold">
-            Rekam Angka & Verifikasi Lapangan
-          </p>
-        </div>
-
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-left">
           {statsData.map((stat) => (
             <div

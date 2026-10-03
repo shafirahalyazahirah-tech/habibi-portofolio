@@ -7,11 +7,8 @@ export default function Experience() {
     <section id="experience" className="py-20 sm:py-24 bg-white border-b border-zinc-200">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="max-w-3xl mb-14 text-left">
-          <p className="text-xs font-mono uppercase tracking-wider text-zinc-500 font-semibold">
-            Track Record & Kontinuitas Karir
-          </p>
-          <h2 className="text-2xl sm:text-3xl font-bold text-zinc-900 tracking-tight mt-1">
+        <div className="max-w-3xl mb-12 text-left">
+          <h2 className="text-2xl sm:text-3xl font-bold text-zinc-900 tracking-tight">
             Pengalaman Kerja Kronologis (2020 – Sekarang)
           </h2>
           <p className="text-sm sm:text-base text-zinc-600 mt-2 leading-relaxed">

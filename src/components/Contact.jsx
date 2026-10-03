@@ -39,10 +39,7 @@ export default function Contact({ onOpenResume }) {
     <section id="contact" className="py-20 sm:py-24 bg-white border-b border-zinc-200">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mb-12 text-left">
-          <p className="text-xs font-mono uppercase tracking-wider text-zinc-500 font-semibold">
-            Inisiasi Kolaborasi
-          </p>
-          <h2 className="text-2xl sm:text-3xl font-bold text-zinc-900 tracking-tight mt-1">
+          <h2 className="text-2xl sm:text-3xl font-bold text-zinc-900 tracking-tight">
             Siap Berdiskusi & Mengakselerasi Pertumbuhan
           </h2>
           <p className="text-sm sm:text-base text-zinc-600 mt-2 leading-relaxed">
@@ -89,7 +86,7 @@ export default function Contact({ onOpenResume }) {
                 href={waUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 text-xs sm:text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-lg shadow-2xs transition-colors"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 text-xs sm:text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 active:scale-[0.98] rounded-lg shadow-2xs transition-all"
               >
                 <MessageCircle className="w-4 h-4" />
                 <span>Mulai Diskusi via WhatsApp</span>
@@ -97,7 +94,7 @@ export default function Contact({ onOpenResume }) {
 
               <button
                 onClick={onOpenResume}
-                className="inline-flex items-center justify-center gap-2 px-5 py-3.5 text-xs sm:text-sm font-semibold text-zinc-700 hover:text-zinc-900 bg-white hover:bg-zinc-100 border border-zinc-200 rounded-lg transition-colors cursor-pointer"
+                className="inline-flex items-center justify-center gap-2 px-5 py-3.5 text-xs sm:text-sm font-semibold text-zinc-700 hover:text-zinc-900 bg-white hover:bg-zinc-100 active:scale-[0.98] border border-zinc-200 rounded-lg transition-all cursor-pointer"
               >
                 <FileText className="w-4 h-4 text-zinc-500" />
                 <span>Buka Ringkasan CV (ATS)</span>

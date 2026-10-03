@@ -21,10 +21,7 @@ export default function Skills() {
     <section id="skills" className="py-20 sm:py-24 bg-zinc-50 border-b border-zinc-200">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mb-12 text-left">
-          <p className="text-xs font-mono uppercase tracking-wider text-zinc-500 font-semibold">
-            Matriks Kompetensi Terpadu
-          </p>
-          <h2 className="text-2xl sm:text-3xl font-bold text-zinc-900 tracking-tight mt-1">
+          <h2 className="text-2xl sm:text-3xl font-bold text-zinc-900 tracking-tight">
             4 Pilar Keahlian: Dari Kode Hingga Closing
           </h2>
           <p className="text-sm sm:text-base text-zinc-600 mt-2">
@@ -37,7 +34,7 @@ export default function Skills() {
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`px-3 py-1.5 rounded-md transition-colors cursor-pointer ${
+                className={`px-3 py-1.5 rounded-md transition-all active:scale-[0.97] cursor-pointer ${
                   activeTab === tab.id
                     ? 'bg-white text-zinc-900 shadow-xs font-semibold'
                     : 'text-zinc-600 hover:text-zinc-900'

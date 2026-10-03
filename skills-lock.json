@@ -71,6 +71,11 @@
       "source": "SankaiAI/ats-optimized-resume-agent-skill",
       "sourceType": "github",
       "skillPath": "SKILL.md"
+    },
+    "taste-skill": {
+      "source": "Leonxlnx/taste-skill",
+      "sourceType": "github",
+      "skillPath": "skills/taste-skill/SKILL.md"
     }
   }
 }

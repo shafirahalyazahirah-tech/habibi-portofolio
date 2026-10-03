@@ -59,7 +59,7 @@ export default function Navbar({ onOpenResume }) {
           <div className="hidden sm:flex items-center gap-2.5">
             <button
               onClick={onOpenResume}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-zinc-700 hover:text-zinc-900 bg-zinc-100 hover:bg-zinc-200 border border-zinc-200 rounded-lg transition-colors cursor-pointer"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-zinc-700 hover:text-zinc-900 bg-zinc-100 hover:bg-zinc-200 active:scale-[0.98] border border-zinc-200 rounded-lg transition-all cursor-pointer"
             >
               <FileText className="w-3.5 h-3.5 text-zinc-600" />
               <span>Ringkasan Karir (CV)</span>
@@ -69,7 +69,7 @@ export default function Navbar({ onOpenResume }) {
               href={waUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-lg shadow-2xs transition-colors"
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold text-white bg-blue-600 hover:bg-blue-700 active:scale-[0.98] rounded-lg shadow-2xs transition-all"
             >
               <MessageCircle className="w-3.5 h-3.5" />
               <span>WhatsApp</span>

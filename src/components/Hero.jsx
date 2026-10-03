@@ -48,7 +48,7 @@ export default function Hero({ onOpenResume }) {
                 href={waUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 active:bg-blue-800 rounded-lg shadow-xs transition-colors"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 active:scale-[0.98] rounded-lg shadow-xs transition-all duration-150"
               >
                 <MessageCircle className="w-4 h-4" />
                 <span>Konsultasi via WhatsApp</span>
@@ -56,7 +56,7 @@ export default function Hero({ onOpenResume }) {
 
               <a
                 href="#experience"
-                className="inline-flex items-center justify-center gap-2 px-5 py-3.5 text-sm font-semibold text-zinc-700 hover:text-zinc-900 bg-zinc-100 hover:bg-zinc-200 active:bg-zinc-300 border border-zinc-200 rounded-lg transition-colors"
+                className="inline-flex items-center justify-center gap-2 px-5 py-3.5 text-sm font-semibold text-zinc-700 hover:text-zinc-900 bg-zinc-100 hover:bg-zinc-200 active:scale-[0.98] border border-zinc-200 rounded-lg transition-all duration-150"
               >
                 <span>Lihat Rekam Jejak Karir</span>
                 <ArrowDown className="w-4 h-4 text-zinc-500" />
@@ -64,7 +64,7 @@ export default function Hero({ onOpenResume }) {
 
               <button
                 onClick={onOpenResume}
-                className="inline-flex items-center justify-center gap-2 px-5 py-3.5 text-sm font-semibold text-zinc-700 hover:text-zinc-900 bg-white hover:bg-zinc-50 active:bg-zinc-100 border border-zinc-200 rounded-lg transition-colors cursor-pointer"
+                className="inline-flex items-center justify-center gap-2 px-5 py-3.5 text-sm font-semibold text-zinc-700 hover:text-zinc-900 bg-white hover:bg-zinc-50 active:scale-[0.98] border border-zinc-200 rounded-lg transition-all duration-150 cursor-pointer"
               >
                 <FileText className="w-4 h-4 text-zinc-500" />
                 <span>Ringkasan CV (ATS)</span>
