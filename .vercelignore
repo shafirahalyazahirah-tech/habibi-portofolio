@@ -1,0 +1,11 @@
+# Exclude internal documentation and agent configuration from Vercel deployments
+workspace-docs/
+docs-internal/
+.agents/
+.claude/
+.cursor/
+Assets/
+CLAUDE.md
+README.md
+skills-lock.json
+*.md

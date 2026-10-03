@@ -27,3 +27,7 @@ __pycache__/
 
 .vercel
 .env*
+
+# Internal documentation & Private files (Never deploy)
+workspace-docs/
+docs-internal/
