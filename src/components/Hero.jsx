@@ -1,23 +1,26 @@
 import React from 'react';
-import { ArrowDown, MessageCircle, CheckCircle2 } from 'lucide-react';
+import { ArrowDown, MessageCircle, FileText, CheckCircle2 } from 'lucide-react';
 import profilePhoto from '../assets/habibi-profile.jpg';
 import { personalInfo } from '../data/portfolioData';
 
-export default function Hero() {
+export default function Hero({ onOpenResume }) {
   const waUrl = `https://wa.me/${personalInfo.phone}?text=${encodeURIComponent(
-    'Halo Habibi, saya melihat portofolio Anda dan ingin berdiskusi mengenai proyek atau strategi digital.'
+    'Halo Habibi, saya melihat portofolio Anda dan tertarik mendiskusikan peluang proyek / strategi pertumbuhan digital.'
   )}`;
 
   return (
     <section id="about" className="pt-12 pb-16 sm:pt-20 sm:pb-24 border-b border-zinc-200 bg-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          {/* Left Column: Authentic Executive Narrative */}
-          <div className="lg:col-span-7 space-y-6">
+          {/* Left Column: Authentic Executive Positioning */}
+          <div className="lg:col-span-7 space-y-6 text-left">
             {/* Status Pill */}
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-100 border border-zinc-200 text-zinc-700 text-xs font-medium">
-              <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
-              <span>Tersedia untuk Konsultasi & Kolaborasi Proyek</span>
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+              </span>
+              <span>{personalInfo.availability}</span>
             </div>
 
             {/* Main Headline */}
@@ -25,7 +28,7 @@ export default function Hero() {
               <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-zinc-900 leading-tight">
                 {personalInfo.name}
               </h1>
-              <p className="text-lg sm:text-xl font-medium text-blue-600">
+              <p className="text-lg sm:text-xl font-semibold text-blue-600">
                 {personalInfo.headline}
               </p>
             </div>
@@ -34,6 +37,13 @@ export default function Hero() {
             <p className="text-base sm:text-lg text-zinc-600 leading-relaxed font-normal">
               {personalInfo.subheadline}
             </p>
+
+            {/* Bio summary */}
+            <div className="p-3.5 rounded-lg bg-zinc-50 border border-zinc-200 text-xs sm:text-sm text-zinc-700 leading-relaxed">
+              <p>
+                <strong>Profil Hybrid:</strong> Lulusan D3 Manajemen Informatika (LP3I Tasikmalaya) dengan pengalaman lebih dari 4 tahun memadukan Web Development (React/Laravel), kampanye Meta Ads terukur, kepemimpinan tim penjualan lapangan, hingga penutupan transaksi produk bernilai tinggi.
+              </p>
+            </div>
 
             {/* Action Buttons */}
             <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
@@ -44,23 +54,31 @@ export default function Hero() {
                 className="inline-flex items-center justify-center gap-2 px-6 py-3.5 text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 active:bg-blue-800 rounded-lg shadow-xs transition-colors"
               >
                 <MessageCircle className="w-4 h-4" />
-                <span>Hubungi Saya via WhatsApp</span>
+                <span>Konsultasi via WhatsApp</span>
               </a>
 
               <a
-                href="#portfolio"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 text-sm font-semibold text-zinc-700 hover:text-zinc-900 bg-zinc-100 hover:bg-zinc-200 active:bg-zinc-300 border border-zinc-200 rounded-lg transition-colors"
+                href="#experience"
+                className="inline-flex items-center justify-center gap-2 px-5 py-3.5 text-sm font-semibold text-zinc-700 hover:text-zinc-900 bg-zinc-100 hover:bg-zinc-200 active:bg-zinc-300 border border-zinc-200 rounded-lg transition-colors"
               >
-                <span>Lihat Studi Kasus</span>
+                <span>Lihat Rekam Jejak Karir</span>
                 <ArrowDown className="w-4 h-4 text-zinc-500" />
               </a>
+
+              <button
+                onClick={onOpenResume}
+                className="inline-flex items-center justify-center gap-2 px-5 py-3.5 text-sm font-semibold text-zinc-700 hover:text-zinc-900 bg-white hover:bg-zinc-50 active:bg-zinc-100 border border-zinc-200 rounded-lg transition-colors cursor-pointer"
+              >
+                <FileText className="w-4 h-4 text-zinc-500" />
+                <span>Ringkasan CV (ATS)</span>
+              </button>
             </div>
 
             {/* Trust Points */}
             <div className="pt-4 border-t border-zinc-100 grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs text-zinc-600">
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0" />
-                <span>Web Dev & Internal Apps</span>
+                <span>Full-Cycle IT & Growth Ops</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0" />
@@ -68,7 +86,7 @@ export default function Hero() {
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0" />
-                <span>Data-Driven ROI Focus</span>
+                <span>Disiplin Kerja Asinkronus</span>
               </div>
             </div>
           </div>
@@ -85,9 +103,10 @@ export default function Hero() {
                     className="w-full h-full object-cover object-top"
                     loading="eager"
                   />
-                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-zinc-950/80 via-zinc-950/20 to-transparent p-4 text-white">
+                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-zinc-950/85 via-zinc-950/20 to-transparent p-4 text-white text-left">
                     <p className="text-base font-semibold leading-tight text-white">{personalInfo.name}</p>
-                    <p className="text-xs text-zinc-300 mt-0.5">Digital Growth & Operations Lead</p>
+                    <p className="text-xs text-zinc-300 mt-0.5">D3 Manajemen Informatika • Technical Marketer</p>
+                    <p className="text-[11px] text-emerald-400 font-mono mt-1">● Tasikmalaya, Jawa Barat</p>
                   </div>
                 </div>
 
