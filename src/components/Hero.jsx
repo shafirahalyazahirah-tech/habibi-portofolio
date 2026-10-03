@@ -103,7 +103,7 @@ export default function Hero({ onOpenResume }) {
                   <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-zinc-950/85 via-zinc-950/20 to-transparent p-4 text-white text-left">
                     <p className="text-base font-semibold leading-tight text-white">{personalInfo.name}</p>
                     <p className="text-xs text-zinc-300 mt-0.5">D3 Manajemen Informatika • Technical Marketer</p>
-                    <p className="text-[11px] text-zinc-300 font-mono mt-1">Tasikmalaya, Jawa Barat</p>
+                    <p className="text-[11px] text-zinc-300 font-mono mt-1">{personalInfo.location}</p>
                   </div>
                 </div>
 

@@ -3,7 +3,7 @@ import { personalInfo, experienceData, educationData, executiveResume } from '..
 /**
  * Generates clean, strictly formatted, industry-standard ATS CV HTML.
  * Engineered for exact 2-page A4 dimensions with zero overflow, zero emojis,
- * and zero browser print headers/footers (via @page margin: 0).
+ * and zero browser print headers/footers.
  */
 export function generateAtsHtml() {
   return `<!DOCTYPE html>
@@ -14,7 +14,7 @@ export function generateAtsHtml() {
   <style>
     @page {
       size: A4 portrait;
-      margin: 0 !important;
+      margin: 8mm 10mm;
     }
 
     * {
@@ -26,7 +26,7 @@ export function generateAtsHtml() {
     }
 
     html, body {
-      width: 210mm;
+      width: 100%;
       margin: 0 !important;
       padding: 0 !important;
       background: #ffffff !important;
@@ -36,26 +36,54 @@ export function generateAtsHtml() {
       line-height: 1.35;
     }
 
-    /* Strict A4 Page Container */
+    /* A4 Page Container: height: auto to prevent mobile Safari 4-page overflow */
     .cv-page {
       width: 210mm;
-      height: 297mm;
-      max-height: 297mm;
-      padding: 15mm 16mm 12mm 16mm;
+      max-width: 100%;
       margin: 0 auto;
+      padding: 10mm 14mm 8mm 14mm;
       box-sizing: border-box;
       background: #ffffff;
       page-break-after: always;
       break-after: page;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      overflow: hidden;
+      display: block;
     }
 
     .cv-page:last-child {
       page-break-after: avoid;
       break-after: avoid;
+    }
+
+    .html2pdf__page-break {
+      height: 0;
+      page-break-after: always;
+      break-after: page;
+    }
+
+    .job, .section, .edu-row, .header {
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    @media print {
+      body {
+        width: 100% !important;
+      }
+      .cv-page {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 2mm 2mm 4mm 2mm !important;
+        margin: 0 !important;
+        page-break-after: always !important;
+        break-after: page !important;
+      }
+      .cv-page:last-child {
+        page-break-after: avoid !important;
+        break-after: avoid !important;
+      }
+      .html2pdf__page-break {
+        display: none !important;
+      }
     }
 
     /* Minimalist Header */
@@ -328,6 +356,8 @@ export function generateAtsHtml() {
     </section>
   </div>
 
+  <div class="html2pdf__page-break"></div>
+
   <!-- ==================== HALAMAN 2 (A4) ==================== -->
   <div class="cv-page">
     <section class="section">
@@ -421,10 +451,108 @@ export function generateAtsHtml() {
 }
 
 /**
- * Triggers pure, isolated A4 PDF printing using a hidden iframe.
- * Uses @page margin: 0 to suppress Chrome/Edge automatic URL headers and footers.
+ * Downloads an official, pristine 2-page A4 PDF file directly using html2pdf.js.
+ * Completely eliminates Safari iOS AirPrint URL headers, timestamps, and 4-page fragmentation.
+ *
+ * @param {Function} [onStatusChange] Optional callback with status { loading: boolean, message: string }
+ */
+export async function downloadAtsPdf(onStatusChange) {
+  try {
+    if (onStatusChange) onStatusChange({ loading: true, message: 'Menyiapkan berkas PDF...' });
+
+    const html2pdfModule = await import('html2pdf.js');
+    const html2pdf = html2pdfModule.default || html2pdfModule;
+
+    // Temporary off-screen container strictly sized for A4 rendering
+    const renderContainer = document.createElement('div');
+    renderContainer.id = 'ats-pdf-render-root';
+    renderContainer.setAttribute(
+      'style',
+      'position: fixed; left: 0; top: 0; width: 210mm; opacity: 0; pointer-events: none; z-index: -9999; background: #ffffff;'
+    );
+
+    const fullHtml = generateAtsHtml();
+    const bodyMatch = fullHtml.match(/<body>([\s\S]*?)<\/body>/i);
+    const styleMatch = fullHtml.match(/<style>([\s\S]*?)<\/style>/i);
+
+    renderContainer.innerHTML = `
+      <style>
+        ${styleMatch ? styleMatch[1] : ''}
+        #ats-pdf-render-root {
+          width: 210mm !important;
+          background: #ffffff !important;
+          color: #0f172a !important;
+        }
+        .cv-page {
+          width: 210mm !important;
+          max-width: 210mm !important;
+          padding: 12mm 15mm 10mm 15mm !important;
+          box-sizing: border-box !important;
+          background: #ffffff !important;
+        }
+      </style>
+      <div>${bodyMatch ? bodyMatch[1] : ''}</div>
+    `;
+
+    document.body.appendChild(renderContainer);
+
+    const opt = {
+      margin: 0,
+      filename: `CV_${personalInfo.name.replace(/\s+/g, '_')}_ATS.pdf`,
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: {
+        scale: 2,
+        useCORS: true,
+        logging: false,
+        letterRendering: true,
+        scrollY: 0,
+        windowWidth: 794
+      },
+      jsPDF: {
+        unit: 'mm',
+        format: 'a4',
+        orientation: 'portrait'
+      },
+      pagebreak: {
+        mode: ['css', 'legacy']
+      }
+    };
+
+    if (onStatusChange) onStatusChange({ loading: true, message: 'Mengonversi ke PDF A4...' });
+    await html2pdf().set(opt).from(renderContainer).save();
+    renderContainer.remove();
+
+    if (onStatusChange) onStatusChange({ loading: false, message: '' });
+  } catch (err) {
+    console.error('downloadAtsPdf failed:', err);
+    if (onStatusChange) onStatusChange({ loading: false, message: '' });
+    // Fallback to browser print dialog
+    printAtsResume();
+  }
+}
+
+/**
+ * Triggers pure, isolated A4 PDF printing.
+ * Uses media print styles to avoid 4-page overflow on mobile Safari.
  */
 export function printAtsResume() {
+  const isMobile = typeof navigator !== 'undefined' && /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+  if (isMobile) {
+    // On iOS Safari / mobile browsers, direct window open avoids hidden iframe print blocking
+    const printWindow = window.open('', '_blank');
+    if (printWindow) {
+      printWindow.document.open();
+      printWindow.document.write(generateAtsHtml());
+      printWindow.document.close();
+      setTimeout(() => {
+        printWindow.focus();
+        printWindow.print();
+      }, 350);
+      return;
+    }
+  }
+
   const iframeId = 'ats-print-isolated-frame';
   let iframe = document.getElementById(iframeId);
 

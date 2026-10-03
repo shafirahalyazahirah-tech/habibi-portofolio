@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { X, Copy, Check, Printer, FileText, Download, Mail, Phone, MapPin, ExternalLink } from 'lucide-react';
+import { X, Copy, Check, Printer, FileText, Download, Mail, Phone, MapPin, ExternalLink, Loader2 } from 'lucide-react';
 import { personalInfo, experienceData, educationData, executiveResume } from '../data/portfolioData';
-import { printAtsResume } from '../utils/printAtsResume';
+import { printAtsResume, downloadAtsPdf } from '../utils/printAtsResume';
 
 export default function ResumeModal({ isOpen, onClose }) {
   const [copied, setCopied] = useState(false);
+  const [downloadStatus, setDownloadStatus] = useState({ loading: false, message: '' });
 
   // Handle ESC key to close
   useEffect(() => {
@@ -65,9 +66,9 @@ ${educationData
   .map(
     (edu) => `
 • ${edu.degree}
-  Institusi: ${edu.institution} (${edu.period})
-  Status: ${edu.status}
-  Catatan: ${edu.highlights[0]}
+   Institusi: ${edu.institution} (${edu.period})
+   Status: ${edu.status}
+   Catatan: ${edu.highlights[0]}
 `
   )
   .join('')}
@@ -83,18 +84,8 @@ Dokumen resmi disiapkan untuk evaluasi perekrut & sistem ATS.
     setTimeout(() => setCopied(false), 2500);
   };
 
-  const handleDownloadText = () => {
-    try {
-      const element = document.createElement('a');
-      const file = new Blob([getResumePlainText()], { type: 'text/plain;charset=utf-8' });
-      element.href = URL.createObjectURL(file);
-      element.download = `CV_${personalInfo.name.replace(/\s+/g, '_')}_ATS.txt`;
-      document.body.appendChild(element);
-      element.click();
-      document.body.removeChild(element);
-    } catch (err) {
-      console.error('Download error:', err);
-    }
+  const handleDownloadPdf = async () => {
+    await downloadAtsPdf(setDownloadStatus);
   };
 
   const handlePrint = () => {
@@ -126,10 +117,10 @@ Dokumen resmi disiapkan untuk evaluasi perekrut & sistem ATS.
             </div>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5 sm:gap-2">
             <button
               onClick={handleCopyText}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-zinc-700 bg-white hover:bg-zinc-100 border border-zinc-200 rounded-md transition-colors cursor-pointer"
+              className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 text-xs font-semibold text-zinc-700 bg-white hover:bg-zinc-100 border border-zinc-200 rounded-md transition-colors cursor-pointer"
               title="Salin teks lengkap resume"
             >
               {copied ? (
@@ -140,27 +131,37 @@ Dokumen resmi disiapkan untuk evaluasi perekrut & sistem ATS.
               ) : (
                 <>
                   <Copy className="w-3.5 h-3.5 text-zinc-500" />
-                  <span>Salin Teks</span>
+                  <span className="hidden sm:inline">Salin Teks</span>
                 </>
               )}
             </button>
 
             <button
-              onClick={handleDownloadText}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-zinc-700 bg-white hover:bg-zinc-100 border border-zinc-200 rounded-md transition-colors cursor-pointer"
-              title="Unduh format teks dokumen"
+              onClick={handleDownloadPdf}
+              disabled={downloadStatus.loading}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-white bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 rounded-md transition-colors shadow-2xs cursor-pointer"
+              title="Unduh berkas PDF A4 resmi tanpa watermark URL browser"
             >
-              <Download className="w-3.5 h-3.5 text-zinc-500" />
-              <span className="hidden sm:inline">Unduh TXT</span>
+              {downloadStatus.loading ? (
+                <>
+                  <Loader2 className="w-3.5 h-3.5 animate-spin text-white" />
+                  <span>{downloadStatus.message || 'Membuat PDF...'}</span>
+                </>
+              ) : (
+                <>
+                  <Download className="w-3.5 h-3.5 text-white" />
+                  <span>Unduh PDF (A4)</span>
+                </>
+              )}
             </button>
 
             <button
               onClick={handlePrint}
-              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-md transition-colors shadow-2xs cursor-pointer"
-              title="Cetak atau Simpan sebagai PDF A4 Standar"
+              className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-zinc-700 bg-white hover:bg-zinc-100 border border-zinc-200 rounded-md transition-colors cursor-pointer"
+              title="Buka dialog cetak browser (Cetak / PDF)"
             >
-              <Printer className="w-3.5 h-3.5 text-white" />
-              <span>Cetak / PDF (A4)</span>
+              <Printer className="w-3.5 h-3.5 text-zinc-600" />
+              <span>Cetak</span>
             </button>
 
             <button
@@ -315,17 +316,34 @@ Dokumen resmi disiapkan untuk evaluasi perekrut & sistem ATS.
         {/* Modal Footer */}
         <div className="px-5 sm:px-6 py-3.5 border-t border-zinc-200 bg-zinc-50 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-zinc-500 flex-shrink-0">
           <div>
-            <span className="font-semibold text-zinc-700">Standar ATS A4</span>
+            <span className="font-semibold text-zinc-700">Standar ATS A4 (2 Halaman Presisi)</span>
             <span className="mx-1.5 text-zinc-300">•</span>
-            <span>Pastikan opsi "Headers and footers" pada jendela cetak tidak dicentang agar bersih tanpa URL</span>
+            <span>Gunakan <strong>Unduh PDF</strong> untuk hasil resmi tanpa watermark URL browser.</span>
           </div>
           <div className="flex items-center gap-2">
             <button
+              onClick={handleDownloadPdf}
+              disabled={downloadStatus.loading}
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold text-white bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 rounded-md transition-colors cursor-pointer"
+            >
+              {downloadStatus.loading ? (
+                <>
+                  <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                  <span>{downloadStatus.message || 'Membuat PDF...'}</span>
+                </>
+              ) : (
+                <>
+                  <Download className="w-3.5 h-3.5" />
+                  <span>Unduh PDF (A4)</span>
+                </>
+              )}
+            </button>
+            <button
               onClick={handlePrint}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-md transition-colors cursor-pointer"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-zinc-700 hover:text-zinc-900 bg-white hover:bg-zinc-100 border border-zinc-200 rounded-md transition-colors cursor-pointer"
             >
               <Printer className="w-3.5 h-3.5" />
-              <span>Cetak / PDF (A4)</span>
+              <span>Cetak / Dialog</span>
             </button>
             <button
               onClick={onClose}
