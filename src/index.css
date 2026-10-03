@@ -28,3 +28,75 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #a1a1aa;
 }
+
+/* ============================================================
+   PRINT / PDF EXPORT STYLES
+   ============================================================ */
+@media print {
+  /* Hide background website when resume modal is open */
+  body.resume-modal-active header,
+  body.resume-modal-active footer,
+  body.resume-modal-active main,
+  .no-print {
+    display: none !important;
+  }
+
+  /* Reset body and html for clean print layout */
+  html,
+  body {
+    background: #ffffff !important;
+    color: #18181b !important;
+    font-size: 10pt !important;
+    line-height: 1.4 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    overflow: visible !important;
+  }
+
+  /* Remove fixed/overlay wrapper constraints */
+  .printable-resume-backdrop {
+    position: static !important;
+    inset: auto !important;
+    background: #ffffff !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: visible !important;
+    display: block !important;
+    backdrop-filter: none !important;
+    z-index: auto !important;
+  }
+
+  .printable-resume-dialog {
+    position: static !important;
+    max-height: none !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    box-shadow: none !important;
+    border: none !important;
+    overflow: visible !important;
+    border-radius: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+  }
+
+  .printable-resume-content {
+    overflow: visible !important;
+    max-height: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* Ensure items don't break awkwardly across pages */
+  .print-avoid-break {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  /* Force print color accuracy */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
