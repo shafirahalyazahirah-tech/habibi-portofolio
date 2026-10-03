@@ -14,12 +14,9 @@ export default function Hero({ onOpenResume }) {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           {/* Left Column: Authentic Executive Positioning */}
           <div className="lg:col-span-7 space-y-6 text-left">
-            {/* Status Pill */}
+            {/* Status Indicator */}
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-100 border border-zinc-200 text-zinc-700 text-xs font-medium">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-              </span>
+              <span className="w-2 h-2 rounded-full bg-emerald-600"></span>
               <span>{personalInfo.availability}</span>
             </div>
 
@@ -106,7 +103,7 @@ export default function Hero({ onOpenResume }) {
                   <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-zinc-950/85 via-zinc-950/20 to-transparent p-4 text-white text-left">
                     <p className="text-base font-semibold leading-tight text-white">{personalInfo.name}</p>
                     <p className="text-xs text-zinc-300 mt-0.5">D3 Manajemen Informatika • Technical Marketer</p>
-                    <p className="text-[11px] text-emerald-400 font-mono mt-1">● Tasikmalaya, Jawa Barat</p>
+                    <p className="text-[11px] text-zinc-300 font-mono mt-1">Tasikmalaya, Jawa Barat</p>
                   </div>
                 </div>
 

@@ -2,7 +2,8 @@ import { personalInfo, experienceData, educationData, executiveResume } from '..
 
 /**
  * Generates clean, strictly formatted, industry-standard ATS CV HTML.
- * Designed to fit standard A4 paper (2 pages) with zero overflow and zero web clutter.
+ * Engineered for exact 2-page A4 dimensions with zero overflow, zero emojis,
+ * and zero browser print headers/footers (via @page margin: 0).
  */
 export function generateAtsHtml() {
   return `<!DOCTYPE html>
@@ -13,9 +14,9 @@ export function generateAtsHtml() {
   <style>
     @page {
       size: A4 portrait;
-      margin: 12mm 15mm 12mm 15mm;
+      margin: 0 !important;
     }
-    
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -24,57 +25,77 @@ export function generateAtsHtml() {
       print-color-adjust: exact !important;
     }
 
-    body {
+    html, body {
+      width: 210mm;
+      margin: 0 !important;
+      padding: 0 !important;
+      background: #ffffff !important;
+      color: #0f172a !important;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      color: #0f172a;
-      background: #ffffff;
-      font-size: 9pt;
-      line-height: 1.38;
-      width: 100%;
+      font-size: 8.8pt;
+      line-height: 1.35;
     }
 
-    .cv-wrapper {
-      width: 100%;
+    /* Strict A4 Page Container */
+    .cv-page {
+      width: 210mm;
+      height: 297mm;
+      max-height: 297mm;
+      padding: 15mm 16mm 12mm 16mm;
       margin: 0 auto;
+      box-sizing: border-box;
+      background: #ffffff;
+      page-break-after: always;
+      break-after: page;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      overflow: hidden;
     }
 
-    /* Header */
+    .cv-page:last-child {
+      page-break-after: avoid;
+      break-after: avoid;
+    }
+
+    /* Minimalist Header */
     .header {
       text-align: center;
-      padding-bottom: 8px;
-      border-bottom: 2px solid #0f172a;
-      margin-bottom: 10px;
+      padding-bottom: 7px;
+      border-bottom: 1.5px solid #0f172a;
+      margin-bottom: 9px;
     }
 
     .name {
-      font-size: 20pt;
+      font-size: 19pt;
       font-weight: 800;
-      letter-spacing: -0.5px;
+      letter-spacing: -0.4px;
       color: #0f172a;
       text-transform: uppercase;
       line-height: 1.1;
     }
 
     .role {
-      font-size: 10pt;
+      font-size: 9.5pt;
       font-weight: 600;
-      color: #2563eb;
-      margin-top: 4px;
-      margin-bottom: 6px;
+      color: #1d4ed8;
+      margin-top: 3px;
+      margin-bottom: 5px;
+      letter-spacing: 0.2px;
     }
 
     .contact-row {
-      font-size: 8.5pt;
+      font-size: 8pt;
       color: #475569;
       display: flex;
       justify-content: center;
+      align-items: center;
       flex-wrap: wrap;
-      gap: 12px;
+      gap: 6px;
     }
 
     .contact-row span {
-      display: inline-flex;
-      align-items: center;
+      display: inline-block;
     }
 
     .contact-row a {
@@ -82,122 +103,123 @@ export function generateAtsHtml() {
       text-decoration: none;
     }
 
+    .sep {
+      color: #94a3b8;
+      font-size: 7.5pt;
+    }
+
     /* Section Styles */
     .section {
-      margin-bottom: 10px;
+      margin-bottom: 8.5px;
     }
 
     .section-title {
-      font-size: 9.5pt;
+      font-size: 9pt;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.8px;
       color: #0f172a;
       border-bottom: 1px solid #cbd5e1;
       padding-bottom: 2px;
-      margin-bottom: 6px;
+      margin-bottom: 5px;
     }
 
     /* Summary */
     .summary-text {
-      font-size: 8.5pt;
+      font-size: 8.2pt;
       color: #334155;
-      line-height: 1.45;
+      line-height: 1.4;
       text-align: justify;
     }
 
-    /* Core Competencies Grid */
+    /* Skills Table */
     .skills-table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 8.5pt;
+      font-size: 8.2pt;
     }
 
     .skills-table td {
-      padding: 2.5px 0;
+      padding: 2px 0;
       vertical-align: top;
     }
 
     .skill-cat {
-      width: 32%;
+      width: 28%;
       font-weight: 700;
       color: #0f172a;
     }
 
     .skill-val {
-      width: 68%;
+      width: 72%;
       color: #334155;
+      line-height: 1.35;
     }
 
     /* Experience Items */
     .job {
-      margin-bottom: 8px;
-      page-break-inside: avoid;
-      break-inside: avoid;
+      margin-bottom: 7px;
+    }
+
+    .job:last-child {
+      margin-bottom: 0;
     }
 
     .job-header {
       display: flex;
       justify-content: space-between;
       align-items: baseline;
-      margin-bottom: 1.5px;
+      margin-bottom: 1px;
     }
 
     .job-title-group {
       display: flex;
       align-items: baseline;
-      gap: 6px;
+      gap: 5px;
     }
 
     .job-role {
-      font-size: 9.5pt;
+      font-size: 9pt;
       font-weight: 700;
       color: #0f172a;
     }
 
     .job-company {
-      font-size: 9pt;
+      font-size: 8.5pt;
       font-weight: 600;
-      color: #2563eb;
+      color: #1d4ed8;
     }
 
     .job-period {
-      font-size: 8pt;
+      font-size: 7.8pt;
       font-weight: 600;
       color: #475569;
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
     }
 
     .job-scope {
-      font-size: 8pt;
+      font-size: 7.8pt;
       color: #64748b;
-      font-style: italic;
       margin-bottom: 2px;
     }
 
     .job-bullets {
-      margin-left: 14px;
-      margin-top: 2px;
+      margin-left: 13px;
+      margin-top: 1.5px;
     }
 
     .job-bullets li {
-      font-size: 8.5pt;
+      font-size: 8.1pt;
       color: #334155;
-      margin-bottom: 2px;
-      line-height: 1.35;
+      margin-bottom: 1.5px;
+      line-height: 1.32;
     }
 
     .job-tags {
       font-size: 7.5pt;
       color: #64748b;
-      margin-top: 2px;
-      margin-left: 14px;
-    }
-
-    /* Page break helper */
-    .page-break-before {
-      page-break-before: always;
-      break-before: page;
+      margin-top: 1.5px;
+      margin-left: 13px;
     }
 
     /* Education */
@@ -205,45 +227,49 @@ export function generateAtsHtml() {
       display: flex;
       justify-content: space-between;
       align-items: baseline;
-      margin-bottom: 2px;
+      margin-bottom: 1px;
     }
 
     .edu-degree {
-      font-size: 9pt;
+      font-size: 8.8pt;
       font-weight: 700;
       color: #0f172a;
     }
 
     .edu-school {
-      font-size: 8.5pt;
-      color: #2563eb;
+      font-size: 8.4pt;
+      color: #1d4ed8;
       font-weight: 600;
     }
 
     .edu-period {
-      font-size: 8pt;
+      font-size: 7.8pt;
       color: #475569;
       font-family: ui-monospace, SFMono-Regular, monospace;
     }
 
     .edu-note {
-      font-size: 8pt;
+      font-size: 7.8pt;
       color: #64748b;
       margin-top: 1px;
     }
   </style>
 </head>
 <body>
-  <div class="cv-wrapper">
+  <!-- ==================== HALAMAN 1 (A4) ==================== -->
+  <div class="cv-page">
     <!-- Header -->
     <header class="header">
       <h1 class="name">${personalInfo.name}</h1>
       <p class="role">${personalInfo.headline}</p>
       <div class="contact-row">
-        <span>📍 ${personalInfo.location}</span>
-        <span>📞 ${personalInfo.phoneFormatted}</span>
-        <span>✉️ ${personalInfo.email}</span>
-        <span>🌐 <a href="${personalInfo.linkedin}">linkedin.com/in/hbibinrhmn</a></span>
+        <span>${personalInfo.location}</span>
+        <span class="sep">•</span>
+        <span>${personalInfo.phoneFormatted}</span>
+        <span class="sep">•</span>
+        <span>${personalInfo.email}</span>
+        <span class="sep">•</span>
+        <span><a href="${personalInfo.linkedin}">linkedin.com/in/hbibinrhmn</a></span>
       </div>
     </header>
 
@@ -278,16 +304,16 @@ export function generateAtsHtml() {
       </table>
     </section>
 
-    <!-- Riwayat Pengalaman Kerja (Halaman 1: Top 2 Roles) -->
-    <section class="section">
+    <!-- Riwayat Pengalaman Kerja (Posisi 1 & 2) -->
+    <section class="section" style="margin-bottom: 0;">
       <h2 class="section-title">Pengalaman Kerja Profesional (Track Record Kronologis)</h2>
 
-      <!-- Role 1: Halfa Barokah -->
+      <!-- Posisi 1: Halfa Barokah -->
       <article class="job">
         <div class="job-header">
           <div class="job-title-group">
             <span class="job-role">${experienceData[0].role}</span>
-            <span>•</span>
+            <span class="sep">•</span>
             <span class="job-company">${experienceData[0].company}</span>
           </div>
           <span class="job-period">${experienceData[0].period}</span>
@@ -299,12 +325,12 @@ export function generateAtsHtml() {
         <div class="job-tags">Keahlian: ${experienceData[0].tags.join(', ')}</div>
       </article>
 
-      <!-- Role 2: KS Motor -->
-      <article class="job">
+      <!-- Posisi 2: KS Motor -->
+      <article class="job" style="margin-top: 7px;">
         <div class="job-header">
           <div class="job-title-group">
             <span class="job-role">${experienceData[1].role}</span>
-            <span>•</span>
+            <span class="sep">•</span>
             <span class="job-company">${experienceData[1].company}</span>
           </div>
           <span class="job-period">${experienceData[1].period}</span>
@@ -316,20 +342,19 @@ export function generateAtsHtml() {
         <div class="job-tags">Keahlian: ${experienceData[1].tags.join(', ')}</div>
       </article>
     </section>
+  </div>
 
-    <!-- Halaman 2: Page Break untuk menjaga kerapihan A4 -->
-    <div class="page-break-before"></div>
-
-    <!-- Riwayat Pengalaman Lanjutan (Roles 3-6) -->
+  <!-- ==================== HALAMAN 2 (A4) ==================== -->
+  <div class="cv-page">
     <section class="section">
       <h2 class="section-title">Pengalaman Kerja Profesional (Lanjutan)</h2>
 
-      <!-- Role 3: Proyek Mako TNI -->
+      <!-- Posisi 3: Proyek Mako TNI -->
       <article class="job">
         <div class="job-header">
           <div class="job-title-group">
             <span class="job-role">${experienceData[2].role}</span>
-            <span>•</span>
+            <span class="sep">•</span>
             <span class="job-company">${experienceData[2].company}</span>
           </div>
           <span class="job-period">${experienceData[2].period}</span>
@@ -341,12 +366,12 @@ export function generateAtsHtml() {
         <div class="job-tags">Keahlian: ${experienceData[2].tags.join(', ')}</div>
       </article>
 
-      <!-- Role 4: PT Santri Niaga -->
-      <article class="job">
+      <!-- Posisi 4: PT Santri Niaga -->
+      <article class="job" style="margin-top: 7px;">
         <div class="job-header">
           <div class="job-title-group">
             <span class="job-role">${experienceData[3].role}</span>
-            <span>•</span>
+            <span class="sep">•</span>
             <span class="job-company">${experienceData[3].company}</span>
           </div>
           <span class="job-period">${experienceData[3].period}</span>
@@ -358,12 +383,12 @@ export function generateAtsHtml() {
         <div class="job-tags">Keahlian: ${experienceData[3].tags.join(', ')}</div>
       </article>
 
-      <!-- Role 5: Taskindo Motor -->
-      <article class="job">
+      <!-- Posisi 5: Taskindo Motor -->
+      <article class="job" style="margin-top: 7px;">
         <div class="job-header">
           <div class="job-title-group">
             <span class="job-role">${experienceData[4].role}</span>
-            <span>•</span>
+            <span class="sep">•</span>
             <span class="job-company">${experienceData[4].company}</span>
           </div>
           <span class="job-period">${experienceData[4].period}</span>
@@ -375,12 +400,12 @@ export function generateAtsHtml() {
         <div class="job-tags">Keahlian: ${experienceData[4].tags.join(', ')}</div>
       </article>
 
-      <!-- Role 6: IndiHome -->
-      <article class="job">
+      <!-- Posisi 6: IndiHome PT Ainiyah / Infomedia -->
+      <article class="job" style="margin-top: 7px;">
         <div class="job-header">
           <div class="job-title-group">
             <span class="job-role">${experienceData[5].role}</span>
-            <span>•</span>
+            <span class="sep">•</span>
             <span class="job-company">${experienceData[5].company}</span>
           </div>
           <span class="job-period">${experienceData[5].period}</span>
@@ -394,12 +419,12 @@ export function generateAtsHtml() {
     </section>
 
     <!-- Riwayat Pendidikan -->
-    <section class="section">
+    <section class="section" style="margin-top: 6px;">
       <h2 class="section-title">Riwayat Pendidikan</h2>
       <div class="edu-row">
         <div>
           <span class="edu-degree">${educationData[0].degree}</span>
-          <span>•</span>
+          <span class="sep">•</span>
           <span class="edu-school">${educationData[0].institution}</span>
         </div>
         <span class="edu-period">${educationData[0].period} (${educationData[0].status})</span>
@@ -413,7 +438,7 @@ export function generateAtsHtml() {
 
 /**
  * Triggers pure, isolated A4 PDF printing using a hidden iframe.
- * Eliminates website DOM bleeding (11 pages), eliminates navbar/footer, and isolates standard A4 layout.
+ * Uses @page margin: 0 to suppress Chrome/Edge automatic URL headers and footers.
  */
 export function printAtsResume() {
   const iframeId = 'ats-print-isolated-frame';
@@ -440,7 +465,6 @@ export function printAtsResume() {
       iframe.contentWindow.print();
     } catch (err) {
       console.error('Print iframe error:', err);
-      // Fallback to opening printable tab if iframe printing blocked
       const newTab = window.open('', '_blank');
       if (newTab) {
         newTab.document.write(generateAtsHtml());

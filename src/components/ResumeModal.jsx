@@ -302,8 +302,12 @@ Dokumen resmi disiapkan untuk evaluasi perekrut & mitra bisnis.
         </div>
 
         {/* Modal Footer */}
-        <div className="px-5 sm:px-6 py-3.5 border-t border-zinc-200 bg-zinc-50 flex items-center justify-between text-xs text-zinc-500 flex-shrink-0">
-          <span>Standar ATS Industri • Siap Simpan sebagai PDF A4</span>
+        <div className="px-5 sm:px-6 py-3.5 border-t border-zinc-200 bg-zinc-50 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-zinc-500 flex-shrink-0">
+          <div>
+            <span className="font-semibold text-zinc-700">Standar ATS A4</span>
+            <span className="mx-1.5 text-zinc-300">•</span>
+            <span>Pastikan opsi "Headers and footers" pada jendela cetak tidak dicentang agar bersih tanpa URL</span>
+          </div>
           <div className="flex items-center gap-2">
             <button
               onClick={handlePrint}

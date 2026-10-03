@@ -33,6 +33,11 @@
    PRINT / PDF EXPORT STYLES
    ============================================================ */
 @media print {
+  @page {
+    size: A4 portrait;
+    margin: 0 !important;
+  }
+
   /* Hide background website when resume modal is open */
   body.resume-modal-active header,
   body.resume-modal-active footer,
