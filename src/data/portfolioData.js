@@ -17,6 +17,7 @@ export const personalInfo = {
   instagramBrand: 'https://www.instagram.com/hanucazari.id/',
   facebook: 'https://web.facebook.com/hbibinrhmn',
   linkedin: 'https://www.linkedin.com/in/hbibinrhmn/',
+  portfolioUrl: 'https://habibi-nurrohman-portfolio.vercel.app',
 };
 
 export const statsData = [
@@ -64,9 +65,9 @@ export const experienceData = [
     type: 'Full-Cycle Growth & Internal System',
     status: 'Saat Ini',
     highlights: [
-      'Meningkatkan omset bisnis lokal hingga ~100% (dari baseline Rp 50–70 juta ke rekor puncak Rp 130 juta/bulan).',
-      'Membangun ekosistem website katalog resmi (batualamhalfabarokah.com) dan merancang aplikasi pencatatan operasional internal untuk kontrol kasir serta stok gudang.',
-      'Menjadi kreator konten tunggal (pengambilan video, editing CapCut) serta mengelola kampanye Meta Ads berorientasi konversi pesan WhatsApp dengan panduan penutupan penjualan terstruktur.',
+      'Membangun ekosistem web katalog resmi (batualamhalfabarokah.com) serta aplikasi kasir dan kontrol stok internal berbasis web, mengeliminasi selisih inventaris manual hingga 0%.',
+      'Meningkatkan omset bisnis lokal hingga ~100% (dari baseline Rp 50–70 juta ke rekor puncak Rp 130 juta/bulan) via integrasi Meta Ads WhatsApp Conversion dan standardisasi alur closing.',
+      'Memproduksi seluruh materi video iklan (CapCut) dan mengelola kampanye Meta Ads dengan optimasi Cost Per Lead (CPL) untuk menjaring ratusan prospek transaksi bernilai jutaan rupiah.',
     ],
     tags: ['batualamhalfabarokah.com', 'Aplikasi Kasir & Stok', 'Meta Ads WhatsApp', 'Content Creation (CapCut)', 'SOP Finansial'],
   },
@@ -79,9 +80,9 @@ export const experienceData = [
     type: 'High-Ticket Automotive Advertising',
     status: '1 Tahun',
     highlights: [
-      'Menghasilkan penjualan 5–13 unit mobil bekas per bulan secara konsisten melalui funnel digital terintegrasi.',
-      'Mengelola anggaran Meta Ads Rp 3 juta/bulan untuk konversi high-ticket dengan efisiensi Cost Per Lead (CPL) tinggi dan penargetan wilayah Jawa Barat yang presisi.',
-      'Mengoptimalkan saluran komunikasi WhatsApp dan standardisasi skrip kualifikasi prospek (leads) hingga terjadi kunjungan survei fisik di showroom.',
+      'Menghasilkan penjualan 5–13 unit mobil bekas per bulan secara konsisten dengan mengelola anggaran Meta Ads Rp 3 juta/bulan berorientasi kunjungan langsung ke showroom.',
+      'Mengembangkan alur kualifikasi prospek cepat di WhatsApp dan skrip negosiasi konsultatif, menyaring pembeli potensial dengan daya beli tinggi di wilayah Jawa Barat.',
+      'Mengoptimalkan Cost Per Acquisition (CPA) dan rasio konversi leads melalui video inspeksi riil kondisi unit dan penargetan demografi presisi.',
     ],
     tags: ['Meta Ads (FB & IG)', 'High-Ticket Funnel', 'WhatsApp Closing Script', 'Showroom Visit Conversion'],
   },
@@ -94,9 +95,9 @@ export const experienceData = [
     type: 'Site Supervision & Logistics Management',
     status: 'Selesai',
     highlights: [
-      'Memimpin pengawasan lapangan dan manajemen logistik material untuk proyek pemasangan batu alam seluas 3.000 meter persegi.',
-      'Memastikan standar kualitas pemasangan, alokasi material harian, dan ketepatan tenggat waktu (deadline) serah terima proyek lapangan.',
-      'Mengoordinasikan komunikasi teknis antara mandor, tukang lapangan, dan penanggung jawab pengadaan material institusi.',
+      'Memimpin supervisi lapangan dan tata kelola logistik material untuk proyek pemasangan batu alam institusional seluas 3.000 m² di Mako TNI Kota Banjar.',
+      'Mengoordinasikan alokasi harian material antara mandor, tukang lapangan, dan pengadaan instansi guna menjamin akurasi jadwal dan zero-waste material.',
+      'Menuntaskan serah terima proyek 100% tepat waktu sesuai standar toleransi mutu dan spesifikasi teknis institusi.',
     ],
     tags: ['Site Supervision', 'Manajemen Logistik Lapangan', 'Pemasangan 3.000 m²', 'Kontrol Kualitas & Deadline'],
   },
@@ -109,9 +110,9 @@ export const experienceData = [
     type: 'Web Development & Customer Relations',
     status: '8 Bulan',
     highlights: [
-      'Membangun ekosistem website profil perusahaan (company profile) berbasis framework PHP (Laravel) untuk meningkatkan kredibilitas online institusi.',
-      'Mengelola aset media sosial perusahaan serta menjalankan layanan interaksi customer relations secara terpadu.',
-      'Berhasil melakukan penutupan penjualan (closing) terhadap 4 prospek jamaah umroh bernilai puluhan juta rupiah melalui pendekatan konsultatif.',
+      'Membangun website profil perusahaan (company profile) berbasis PHP Laravel dari nol untuk meningkatkan kredibilitas digital dan akuisisi jamaah online.',
+      'Menutup penjualan langsung (consultative closing) 4 paket ibadah umroh bernilai puluhan juta rupiah melalui pendekatan funnel konsultasi online.',
+      'Mengelola aset media sosial dan standardisasi respons interaksi pelanggan (customer relations) untuk mempercepat kualifikasi calon jamaah.',
     ],
     tags: ['PHP Laravel', 'Website Company Profile', 'Social Media Management', 'High-Ticket Closing (Umroh)'],
   },
@@ -124,9 +125,9 @@ export const experienceData = [
     type: 'Showroom Operations & Inventory Content',
     status: '11 Bulan',
     highlights: [
-      'Mengelola administrasi harian showroom, inventaris keluar-masuk kendaraan, dan jadwal perawatan berkala unit mobil.',
-      'Memproduksi dan menjadwalkan konten promosi inventaris di media sosial lokal untuk mendongkrak visibilitas produk di area Tasikmalaya.',
-      'Menghubungkan inquiry calon pembeli dari media sosial langsung ke tim sales showroom untuk tindak lanjut cepat.',
+      'Mengelola administrasi operasional showroom harian, rotasi keluar-masuk 20+ unit kendaraan, dan buku kas harian dengan akurasi 100%.',
+      'Memproduksi dan menjadwalkan konten promosi inventaris di media sosial lokal, mendongkrak inquiry calon pembeli harian langsung ke tim sales showroom.',
+      'Menstandarkan alur serah terima dokumen legalitas kendaraan (BPKB, STNK) dan jadwal perawatan berkala unit mobil showroom.',
     ],
     tags: ['Manajemen Inventaris', 'Administrasi Showroom', 'Content Scheduling', 'Social Media Marketing'],
   },
@@ -139,9 +140,9 @@ export const experienceData = [
     type: 'Direct Sales & Field Leadership',
     status: '1,5 Tahun',
     highlights: [
-      'Memimpin strategi akuisisi lapangan (door-to-door B2C) dan mengawasi ketercapaian KPI 2 tim perwakilan penjualan (sales representatives) produk IndiHome.',
-      'Melakukan pelatihan teknik negosiasi, mentalitas penjualan langsung, dan pemetaan rute canvassing di seluruh area operasional Tasikmalaya.',
-      'Memastikan pencapaian target instalasi baru pelanggan ritel secara konsisten setiap bulan.',
+      'Memimpin strategi akuisisi door-to-door (B2C direct sales) dan mengawasi ketercapaian target KPI 2 tim perwakilan penjualan (10+ sales field).',
+      'Melatih teknik canvassing rute harian, negosiasi langsung di lapangan, serta penanganan keberatan calon pelanggan di seluruh area Tasikmalaya.',
+      'Mencapai target kuota instalasi pelanggan baru IndiHome secara konsisten setiap bulan dengan tingkat retensi tinggi.',
     ],
     tags: ['Direct Sales B2C', 'Field Team Leadership', 'KPI & Canvassing', 'Sales Negotiation Training'],
   },
@@ -253,12 +254,12 @@ export const projectsData = [
 ];
 
 export const executiveResume = {
-  summary: `Habibi Nurrohman adalah Digital Growth & Operations Specialist / Technical Marketer dengan pengalaman 4+ tahun menggabungkan Web Development (React, Tailwind, Laravel), Performance Marketing (Meta Ads, GA4, GTM), serta Operasional & High-Ticket Closing Sales. Lulusan D3 Manajemen Informatika (LP3I Tasikmalaya) dengan rekam jejak kepemimpinan tim penjualan lapangan (IndiHome), supervisi proyek fisik 3.000 m², hingga peningkatan omset bisnis lokal mencapai Rp 130 Jt/bulan.`,
+  summary: `Digital Growth & Operations Specialist dan Technical Marketer dengan pengalaman 4+ tahun mengintegrasikan rekayasa perangkat lunak modern (React, Tailwind CSS, Laravel), pemasaran berbasis performa (Meta Ads, GA4, GTM), serta kepemimpinan operasional dan penjualan bernilai tinggi. Terbukti melipatgandakan omset bisnis lokal hingga Rp 130 juta/bulan (+100%), menghasilkan 5–13 transaksi unit otomotif/bulan secara konsisten, serta memimpin supervisi logistik lapangan skala institusi seluas 3.000 m². Lulusan D3 Manajemen Informatika (LP3I Tasikmalaya).`,
   coreCompetencies: [
-    'Web & App Development: React, Tailwind CSS, Vite, Laravel 11, cPanel Hosting',
-    'Performance Marketing: Meta Ads (Traffic & WhatsApp Conversion), GA4, GTM, GSC',
-    'Sales & Pipeline: High-Ticket Closing via WhatsApp, Direct B2C Sales, Canvassing',
-    'Business Operations: SOP Kasir & Inventaris Gudang, Pengawasan Proyek Lapangan (3.000 m²)',
-    'Media Production: Pembuatan & Editing Video Iklan (CapCut), Multi-Platform Social Media',
+    'Web & App Development: React, Tailwind CSS, Vite, Laravel 11, cPanel / Shared Hosting, REST API, Git',
+    'Performance Marketing: Meta Ads (Traffic & WhatsApp Conversion), Google Analytics 4 (GA4), GTM, GSC',
+    'Sales & Funnel Operations: High-Ticket Closing via WhatsApp, Direct B2C Sales & Canvassing, Lead Qualification',
+    'Business Operations: SOP Kasir & Inventaris Gudang, Supervisi Lapangan Institusional (3.000 m²)',
+    'Media Production: Pembuatan & Editing Video Iklan (CapCut), Distribusi Multi-Platform Terjadwal',
   ],
 };

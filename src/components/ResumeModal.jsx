@@ -21,7 +21,7 @@ export default function ResumeModal({ isOpen, onClose }) {
 
   const getResumePlainText = () => {
     return `============================================================
-CURRICULUM VITAE / EXECUTIVE RESUME (ATS COMPLIANT)
+CURRICULUM VITAE / EXECUTIVE RESUME (ATS-OPTIMIZED)
 ============================================================
 Nama: ${personalInfo.name}
 Role: ${personalInfo.headline}
@@ -29,19 +29,20 @@ Domisili: ${personalInfo.location}
 WhatsApp/Telepon: ${personalInfo.phoneFormatted}
 Email: ${personalInfo.email}
 LinkedIn: ${personalInfo.linkedin}
+Portfolio: ${personalInfo.portfolioUrl}
 
 ------------------------------------------------------------
-RINGKASAN EKSEKUTIF
+PROFESSIONAL SUMMARY
 ------------------------------------------------------------
 ${executiveResume.summary}
 
 ------------------------------------------------------------
-KOMPETENSI UTAMA & TEKNIS
+CORE COMPETENCIES & TECHNICAL SKILLS
 ------------------------------------------------------------
 ${executiveResume.coreCompetencies.map((c) => `• ${c}`).join('\n')}
 
 ------------------------------------------------------------
-RIWAYAT PENGALAMAN KERJA (CHRONOLOGICAL TIMELINE)
+PROFESSIONAL EXPERIENCE
 ------------------------------------------------------------
 ${experienceData
   .map(
@@ -58,7 +59,7 @@ ${idx + 1}. ${exp.role} | ${exp.company}
   .join('')}
 
 ------------------------------------------------------------
-RIWAYAT PENDIDIKAN
+EDUCATION
 ------------------------------------------------------------
 ${educationData
   .map(
@@ -71,7 +72,7 @@ ${educationData
   )
   .join('')}
 ============================================================
-Dokumen resmi disiapkan untuk evaluasi perekrut & mitra bisnis.
+Dokumen resmi disiapkan untuk evaluasi perekrut & sistem ATS.
 `;
   };
 
@@ -207,23 +208,33 @@ Dokumen resmi disiapkan untuk evaluasi perekrut & mitra bisnis.
                 LinkedIn Profile
                 <ExternalLink className="w-3 h-3" />
               </a>
+              <span>•</span>
+              <a
+                href={personalInfo.portfolioUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:underline inline-flex items-center gap-0.5"
+              >
+                Live Portfolio
+                <ExternalLink className="w-3 h-3" />
+              </a>
             </div>
           </div>
 
-          {/* Section: Ringkasan Eksekutif */}
+          {/* Section: Professional Summary */}
           <div>
             <h2 className="text-xs font-bold uppercase tracking-wider text-zinc-900 border-b border-zinc-300 pb-1 mb-2 font-mono">
-              Ringkasan Eksekutif / Professional Summary
+              PROFESSIONAL SUMMARY
             </h2>
             <p className="text-xs sm:text-sm text-zinc-700 leading-relaxed text-justify">
               {executiveResume.summary}
             </p>
           </div>
 
-          {/* Section: Kompetensi Inti */}
+          {/* Section: Core Competencies */}
           <div>
             <h2 className="text-xs font-bold uppercase tracking-wider text-zinc-900 border-b border-zinc-300 pb-1 mb-2 font-mono">
-              Kompetensi Kunci & Matriks Keahlian
+              CORE COMPETENCIES & TECHNICAL SKILLS
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-zinc-700">
               {executiveResume.coreCompetencies.map((comp, idx) => (
@@ -235,10 +246,10 @@ Dokumen resmi disiapkan untuk evaluasi perekrut & mitra bisnis.
             </div>
           </div>
 
-          {/* Section: Pengalaman Kerja Kronologis */}
+          {/* Section: Professional Experience */}
           <div>
             <h2 className="text-xs font-bold uppercase tracking-wider text-zinc-900 border-b border-zinc-300 pb-1 mb-3 font-mono">
-              Riwayat Pengalaman Kerja Profesional (2020 – Sekarang)
+              PROFESSIONAL EXPERIENCE (2020 – PRESENT)
             </h2>
 
             <div className="space-y-4">
@@ -280,10 +291,10 @@ Dokumen resmi disiapkan untuk evaluasi perekrut & mitra bisnis.
             </div>
           </div>
 
-          {/* Section: Riwayat Pendidikan */}
+          {/* Section: Education */}
           <div>
             <h2 className="text-xs font-bold uppercase tracking-wider text-zinc-900 border-b border-zinc-300 pb-1 mb-2 font-mono">
-              Riwayat Pendidikan
+              EDUCATION
             </h2>
             {educationData.map((edu) => (
               <div key={edu.id} className="text-xs text-zinc-700">

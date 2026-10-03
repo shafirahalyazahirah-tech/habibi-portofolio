@@ -132,28 +132,24 @@ export function generateAtsHtml() {
       text-align: justify;
     }
 
-    /* Skills Table */
-    .skills-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 8.2pt;
-    }
-
-    .skills-table td {
-      padding: 2px 0;
-      vertical-align: top;
-    }
-
-    .skill-cat {
-      width: 28%;
-      font-weight: 700;
-      color: #0f172a;
-    }
-
-    .skill-val {
-      width: 72%;
+    /* Skills (Linear ATS Container) */
+    .skills-container {
+      font-size: 8.1pt;
       color: #334155;
-      line-height: 1.35;
+      line-height: 1.36;
+    }
+
+    .skill-entry {
+      margin-bottom: 2.5px;
+    }
+
+    .skill-entry:last-child {
+      margin-bottom: 0;
+    }
+
+    .skill-entry strong {
+      color: #0f172a;
+      font-weight: 700;
     }
 
     /* Experience Items */
@@ -270,43 +266,31 @@ export function generateAtsHtml() {
         <span>${personalInfo.email}</span>
         <span class="sep">•</span>
         <span><a href="${personalInfo.linkedin}">linkedin.com/in/hbibinrhmn</a></span>
+        <span class="sep">•</span>
+        <span><a href="${personalInfo.portfolioUrl}">habibi-nurrohman-portfolio.vercel.app</a></span>
       </div>
     </header>
 
-    <!-- Ringkasan Eksekutif -->
+    <!-- Professional Summary -->
     <section class="section">
-      <h2 class="section-title">Ringkasan Eksekutif / Professional Summary</h2>
+      <h2 class="section-title">PROFESSIONAL SUMMARY</h2>
       <p class="summary-text">${executiveResume.summary}</p>
     </section>
 
-    <!-- Kompetensi Inti -->
+    <!-- Core Competencies & Technical Skills -->
     <section class="section">
-      <h2 class="section-title">Kompetensi Kunci & Matriks Keahlian</h2>
-      <table class="skills-table">
-        <tbody>
-          <tr>
-            <td class="skill-cat">Web Development & IT:</td>
-            <td class="skill-val">React, Tailwind CSS, Vite, Laravel 11, cPanel / Shared Hosting, Vercel, AntiGravity/Cursor</td>
-          </tr>
-          <tr>
-            <td class="skill-cat">Performance Marketing:</td>
-            <td class="skill-val">Meta Ads (Traffic & WhatsApp Conversion), GA4, Google Tag Manager (GTM), Google Search Console (GSC)</td>
-          </tr>
-          <tr>
-            <td class="skill-cat">Sales & Closing Funnel:</td>
-            <td class="skill-val">High-Ticket Sales Closing via WhatsApp, Direct B2C Canvassing, Kualifikasi Prospek, Negosiasi Konsultatif</td>
-          </tr>
-          <tr>
-            <td class="skill-cat">Operasional & Media:</td>
-            <td class="skill-val">Penyusunan SOP Kasir & Inventaris Gudang, Supervisi Lapangan (3.000 m²), Produksi Video Iklan (CapCut)</td>
-          </tr>
-        </tbody>
-      </table>
+      <h2 class="section-title">CORE COMPETENCIES & TECHNICAL SKILLS</h2>
+      <div class="skills-container">
+        <p class="skill-entry"><strong>Web Development & IT:</strong> React, Tailwind CSS, Vite, Laravel 11, cPanel / Shared Hosting, Vercel, REST API, Git, Workflow Akselerasi AI (AntiGravity/Cursor)</p>
+        <p class="skill-entry"><strong>Performance Marketing & Analytics:</strong> Meta Ads (Traffic & WhatsApp Conversion), Google Analytics 4 (GA4), Google Tag Manager (GTM), Google Search Console (GSC)</p>
+        <p class="skill-entry"><strong>Sales & Funnel Operations:</strong> High-Ticket Closing via WhatsApp, Direct B2C Sales & Canvassing, Kualifikasi Prospek Cepat, Negosiasi Konsultatif</p>
+        <p class="skill-entry"><strong>Operations & Media Production:</strong> Penyusunan SOP Kasir & Inventaris Gudang, Supervisi Lapangan Institusional (3.000 m²), Produksi Video Iklan (CapCut)</p>
+      </div>
     </section>
 
-    <!-- Riwayat Pengalaman Kerja (Posisi 1 & 2) -->
+    <!-- Professional Experience (Page 1) -->
     <section class="section" style="margin-bottom: 0;">
-      <h2 class="section-title">Pengalaman Kerja Profesional (Track Record Kronologis)</h2>
+      <h2 class="section-title">PROFESSIONAL EXPERIENCE</h2>
 
       <!-- Posisi 1: Halfa Barokah -->
       <article class="job">
@@ -347,7 +331,7 @@ export function generateAtsHtml() {
   <!-- ==================== HALAMAN 2 (A4) ==================== -->
   <div class="cv-page">
     <section class="section">
-      <h2 class="section-title">Pengalaman Kerja Profesional (Lanjutan)</h2>
+      <h2 class="section-title">PROFESSIONAL EXPERIENCE (CONTINUED)</h2>
 
       <!-- Posisi 3: Proyek Mako TNI -->
       <article class="job">
@@ -420,7 +404,7 @@ export function generateAtsHtml() {
 
     <!-- Riwayat Pendidikan -->
     <section class="section" style="margin-top: 6px;">
-      <h2 class="section-title">Riwayat Pendidikan</h2>
+      <h2 class="section-title">EDUCATION</h2>
       <div class="edu-row">
         <div>
           <span class="edu-degree">${educationData[0].degree}</span>
