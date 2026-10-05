@@ -528,7 +528,12 @@ export function generateAtsHtml() {
 
 /**
  * Downloads an official, pristine 2-page A4 PDF file directly using html2pdf.js.
- * Completely eliminates Safari iOS AirPrint URL headers, timestamps, and 4-page fragmentation.
+ *
+ * ROOT CAUSE FIX (blank PDF bug):
+ * The previous implementation created a DOM element with `opacity: 0; z-index: -9999`,
+ * which caused html2canvas to capture a fully transparent/blank canvas.
+ * Fix: pass an HTML string directly to html2pdf().from(string, 'string') so that
+ * html2pdf manages the DOM element internally with correct visibility.
  *
  * @param {Function} [onStatusChange] Optional callback with status { loading: boolean, message: string }
  */
@@ -539,38 +544,18 @@ export async function downloadAtsPdf(onStatusChange) {
     const html2pdfModule = await import('html2pdf.js');
     const html2pdf = html2pdfModule.default || html2pdfModule;
 
-    // Temporary off-screen container strictly sized for A4 rendering
-    const renderContainer = document.createElement('div');
-    renderContainer.id = 'ats-pdf-render-root';
-    renderContainer.setAttribute(
-      'style',
-      'position: fixed; left: 0; top: 0; width: 210mm; opacity: 0; pointer-events: none; z-index: -9999; background: #ffffff;'
-    );
-
+    // Generate the full ATS HTML and extract its parts
     const fullHtml = generateAtsHtml();
-    const bodyMatch = fullHtml.match(/<body>([\s\S]*?)<\/body>/i);
     const styleMatch = fullHtml.match(/<style>([\s\S]*?)<\/style>/i);
+    const bodyMatch  = fullHtml.match(/<body[^>]*>([\s\S]*)<\/body>/i);
 
-    renderContainer.innerHTML = `
-      <style>
-        ${styleMatch ? styleMatch[1] : ''}
-        #ats-pdf-render-root {
-          width: 210mm !important;
-          background: #ffffff !important;
-          color: #0f172a !important;
-        }
-        .cv-page {
-          width: 210mm !important;
-          max-width: 210mm !important;
-          padding: 12mm 15mm 10mm 15mm !important;
-          box-sizing: border-box !important;
-          background: #ffffff !important;
-        }
-      </style>
-      <div>${bodyMatch ? bodyMatch[1] : ''}</div>
-    `;
+    const styleContent = styleMatch ? styleMatch[1] : '';
+    const bodyContent  = bodyMatch  ? bodyMatch[1]  : '';
 
-    document.body.appendChild(renderContainer);
+    // Build an HTML source string.
+    // Using .from(source, 'string') lets html2pdf create and manage its own
+    // DOM container with correct visibility — no opacity:0 or z-index tricks needed.
+    const source = `<style>${styleContent}</style><div style="width:794px;margin:0 auto;background:#fff;">${bodyContent}</div>`;
 
     const opt = {
       margin: 0,
@@ -581,22 +566,21 @@ export async function downloadAtsPdf(onStatusChange) {
         useCORS: true,
         logging: false,
         letterRendering: true,
+        windowWidth: 794,
         scrollY: 0,
-        windowWidth: 794
       },
       jsPDF: {
         unit: 'mm',
         format: 'a4',
-        orientation: 'portrait'
+        orientation: 'portrait',
       },
       pagebreak: {
-        mode: ['css', 'legacy']
-      }
+        mode: ['css', 'legacy'],
+      },
     };
 
     if (onStatusChange) onStatusChange({ loading: true, message: 'Mengonversi ke PDF A4...' });
-    await html2pdf().set(opt).from(renderContainer).save();
-    renderContainer.remove();
+    await html2pdf().set(opt).from(source, 'string').save();
 
     if (onStatusChange) onStatusChange({ loading: false, message: '' });
   } catch (err) {
