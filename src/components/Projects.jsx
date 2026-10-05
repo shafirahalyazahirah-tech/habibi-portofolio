@@ -11,7 +11,7 @@ export default function Projects() {
             Rekam Solusi & Transformasi Bisnis (P-A-R)
           </h2>
           <p className="text-sm sm:text-base text-zinc-600 mt-2">
-            Bagaimana eksekusi teknis yang presisi dan strategi periklanan berbasis data menyelesaikan kebuntuan bisnis konvensional dan melipatgandakan omset.
+            Studi kasus implementasi sistem web, periklanan digital berbasis data, dan standardisasi alur operasional dalam memecahkan tantangan bisnis nyata.
           </p>
         </div>
 

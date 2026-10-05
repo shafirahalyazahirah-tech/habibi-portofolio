@@ -1,4 +1,4 @@
-import { personalInfo, experienceData, educationData, executiveResume } from '../data/portfolioData';
+import { personalInfo, experienceData, educationData, executiveResume, certificationsData } from '../data/portfolioData';
 
 /**
  * Generates clean, strictly formatted, industry-standard ATS CV HTML.
@@ -277,6 +277,53 @@ export function generateAtsHtml() {
       color: #64748b;
       margin-top: 1px;
     }
+
+    /* Certifications & Licenses */
+    .cert-item {
+      margin-bottom: 3px;
+    }
+
+    .cert-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .cert-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 0.5px;
+    }
+
+    .cert-name {
+      font-size: 8.5pt;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .cert-issuer {
+      font-size: 8.2pt;
+      font-weight: 600;
+      color: #1d4ed8;
+    }
+
+    .cert-period {
+      font-size: 7.6pt;
+      font-weight: 600;
+      color: #475569;
+      font-family: ui-monospace, SFMono-Regular, monospace;
+    }
+
+    .cert-sub {
+      font-size: 7.5pt;
+      color: #64748b;
+      line-height: 1.25;
+    }
+
+    .cert-sub code {
+      font-family: ui-monospace, SFMono-Regular, monospace;
+      color: #1e293b;
+      font-weight: 600;
+    }
   </style>
 </head>
 <body>
@@ -309,10 +356,10 @@ export function generateAtsHtml() {
     <section class="section">
       <h2 class="section-title">CORE COMPETENCIES & TECHNICAL SKILLS</h2>
       <div class="skills-container">
-        <p class="skill-entry"><strong>Web Development & IT:</strong> React, Tailwind CSS, Vite, Laravel 11, cPanel / Shared Hosting, Vercel, REST API, Git, Workflow Akselerasi AI (AntiGravity/Cursor)</p>
-        <p class="skill-entry"><strong>Performance Marketing & Analytics:</strong> Meta Ads (Traffic & WhatsApp Conversion), Google Analytics 4 (GA4), Google Tag Manager (GTM), Google Search Console (GSC)</p>
-        <p class="skill-entry"><strong>Sales & Funnel Operations:</strong> High-Ticket Closing via WhatsApp, Direct B2C Sales & Canvassing, Kualifikasi Prospek Cepat, Negosiasi Konsultatif</p>
-        <p class="skill-entry"><strong>Operations & Media Production:</strong> Penyusunan SOP Kasir & Inventaris Gudang, Supervisi Lapangan Institusional (3.000 m²), Produksi Video Iklan (CapCut)</p>
+        <p class="skill-entry"><strong>Web Development & IT:</strong> React, Tailwind CSS, Vite, JavaScript ES6+ (Dicoding Certified), Algoritma & Struktur Data (Predikat A), Laravel 11, SQL, cPanel, REST API, Git, Workflow AI</p>
+        <p class="skill-entry"><strong>Performance Marketing & Analytics:</strong> Meta Ads (WhatsApp Conversion), Google Analytics 4 (GA4 Certified), Grow Offline Sales (Google Certified), Inbound Marketing (HubSpot Certified), GTM, GSC</p>
+        <p class="skill-entry"><strong>High-Ticket Sales & Funnel:</strong> WhatsApp Sales Closing, Presentasi & Negosiasi (Predikat B+), Direct B2C Sales, Consultative Selling (Otomotif & Umroh)</p>
+        <p class="skill-entry"><strong>Operations & Media Production:</strong> Standardisasi SOP Operasional & Gudang, Supervisi Lapangan (1.000 m²), Social Media Strategy & ROI (HubSpot Certified), Produksi Video Iklan (CapCut)</p>
       </div>
     </section>
 
@@ -443,7 +490,36 @@ export function generateAtsHtml() {
         </div>
         <span class="edu-period">${educationData[0].period} (${educationData[0].status})</span>
       </div>
-      <p class="edu-note">${educationData[0].highlights[0]}</p>
+      <ul class="job-bullets" style="margin-top: 2px;">
+        ${educationData[0].highlights.map((h) => `<li>${h}</li>`).join('')}
+      </ul>
+    </section>
+
+    <!-- Certifications & Licenses -->
+    <section class="section" style="margin-top: 6px;">
+      <h2 class="section-title">CERTIFICATIONS & LICENSES</h2>
+      <div class="cert-list">
+        ${certificationsData
+          .map(
+            (c) => `
+        <div class="cert-item">
+          <div class="cert-header">
+            <div>
+              <span class="cert-name">${c.name}</span>
+              <span class="sep">•</span>
+              <span class="cert-issuer">${c.issuer}</span>
+            </div>
+            <span class="cert-period">${c.validity}</span>
+          </div>
+          <div class="cert-sub">
+            <span>ID: <code>${c.credentialId}</code></span>
+            <span class="sep">•</span>
+            <span>Keahlian: ${c.skills.slice(0, 3).join(', ')}</span>
+          </div>
+        </div>`
+          )
+          .join('')}
+      </div>
     </section>
   </div>
 </body>

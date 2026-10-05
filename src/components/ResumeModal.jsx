@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { X, Copy, Check, Printer, FileText, Download, Mail, Phone, MapPin, ExternalLink, Loader2 } from 'lucide-react';
-import { personalInfo, experienceData, educationData, executiveResume } from '../data/portfolioData';
+import { X, Copy, Check, Printer, FileText, Download, Mail, Phone, MapPin, ExternalLink, Loader2, Award, Eye } from 'lucide-react';
+import { personalInfo, experienceData, educationData, executiveResume, certificationsData } from '../data/portfolioData';
 import { printAtsResume, downloadAtsPdf } from '../utils/printAtsResume';
 
 export default function ResumeModal({ isOpen, onClose }) {
   const [copied, setCopied] = useState(false);
   const [downloadStatus, setDownloadStatus] = useState({ loading: false, message: '' });
+  const [previewCert, setPreviewCert] = useState(null);
 
   // Handle ESC key to close
   useEffect(() => {
@@ -68,7 +69,23 @@ ${educationData
 • ${edu.degree}
    Institusi: ${edu.institution} (${edu.period})
    Status: ${edu.status}
-   Catatan: ${edu.highlights[0]}
+   Konsentrasi: ${edu.concentration}
+   Fokus Akademis:
+   ${edu.highlights.map((h) => `• ${h}`).join('\n   ')}
+`
+  )
+  .join('')}
+------------------------------------------------------------
+CERTIFICATIONS & LICENSES
+------------------------------------------------------------
+${certificationsData
+  .map(
+    (c) => `
+• ${c.name} | ${c.issuer}
+   Kategori: ${c.category}
+   Masa Berlaku: ${c.issueDate} s.d. ${c.expiryDate}
+   No/ID Kredensial: ${c.credentialId}
+   Kompetensi: ${c.skills.join(', ')}
 `
   )
   .join('')}
@@ -93,10 +110,11 @@ Dokumen resmi disiapkan untuk evaluasi perekrut & sistem ATS.
   };
 
   return (
-    <div
-      className="fixed inset-0 z-50 overflow-y-auto bg-zinc-950/70 backdrop-blur-xs flex items-center justify-center p-3 sm:p-6 animate-in fade-in duration-200"
-      onClick={onClose}
-    >
+    <>
+      <div
+        className="fixed inset-0 z-50 overflow-y-auto bg-zinc-950/70 backdrop-blur-xs flex items-center justify-center p-3 sm:p-6 animate-in fade-in duration-200"
+        onClick={onClose}
+      >
       <div
         className="relative w-full max-w-3xl bg-white rounded-2xl shadow-2xl border border-zinc-200 overflow-hidden flex flex-col max-h-[92vh]"
         onClick={(e) => e.stopPropagation()}
@@ -250,7 +268,7 @@ Dokumen resmi disiapkan untuk evaluasi perekrut & sistem ATS.
           {/* Section: Professional Experience */}
           <div>
             <h2 className="text-xs font-bold uppercase tracking-wider text-zinc-900 border-b border-zinc-300 pb-1 mb-3 font-mono">
-              PROFESSIONAL EXPERIENCE (2020 – PRESENT)
+              PROFESSIONAL EXPERIENCE (2020 - PRESENT)
             </h2>
 
             <div className="space-y-4">
@@ -272,7 +290,7 @@ Dokumen resmi disiapkan untuk evaluasi perekrut & sistem ATS.
                   </div>
 
                   <p className="text-[11px] text-zinc-500 italic mt-0.5">
-                    {exp.location} — {exp.type}
+                    {exp.location} | {exp.type}
                   </p>
 
                   <ul className="mt-2 space-y-1.5 text-xs text-zinc-700 list-disc list-inside">
@@ -307,9 +325,96 @@ Dokumen resmi disiapkan untuk evaluasi perekrut & sistem ATS.
                   </div>
                   <span className="text-xs font-mono text-zinc-500">{edu.period} ({edu.status})</span>
                 </div>
-                <p className="text-xs text-zinc-600 mt-1">{edu.highlights[0]}</p>
+                <div className="mt-1 space-y-1 text-zinc-600">
+                  {edu.highlights.map((point, idx) => (
+                    <p key={idx} className="leading-relaxed">
+                      • {point}
+                    </p>
+                  ))}
+                </div>
               </div>
             ))}
+          </div>
+
+          {/* Section: Certifications & Licenses */}
+          <div>
+            <div className="flex items-center justify-between border-b border-zinc-300 pb-1 mb-2.5">
+              <h2 className="text-xs font-bold uppercase tracking-wider text-zinc-900 font-mono flex items-center gap-1.5">
+                <Award className="w-3.5 h-3.5 text-blue-600" />
+                CERTIFICATIONS &amp; LICENSES (VERIFIED CREDENTIALS)
+              </h2>
+              <span className="text-[10px] text-zinc-500 font-mono font-medium">{certificationsData.length} Kredensial Resmi</span>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5">
+              {certificationsData.map((cert) => (
+                <div
+                  key={cert.id}
+                  className="p-3 rounded-lg border border-zinc-200 bg-zinc-50/70 hover:bg-zinc-50 hover:border-zinc-300 transition-all flex flex-col justify-between"
+                >
+                  <div>
+                    <div className="flex items-start justify-between gap-2">
+                      <span className="font-bold text-zinc-900 text-xs leading-snug">
+                        {cert.name}
+                      </span>
+                      <span className="text-[10px] font-mono font-semibold px-1.5 py-0.5 rounded bg-blue-50 text-blue-700 border border-blue-200/70 whitespace-nowrap">
+                        {cert.issuer}
+                      </span>
+                    </div>
+
+                    <div className="text-[11px] text-zinc-600 mt-1.5 space-y-0.5">
+                      <div className="flex items-center gap-1.5">
+                        <span className="text-zinc-400">Masa:</span>
+                        <span className="font-medium text-zinc-800">{cert.issueDate} - {cert.expiryDate}</span>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <span className="text-zinc-400">ID:</span>
+                        <code className="text-[10px] font-mono text-zinc-700 bg-white px-1 py-0.5 rounded border border-zinc-200">{cert.credentialId}</code>
+                      </div>
+                    </div>
+
+                    <div className="mt-2 flex flex-wrap gap-1">
+                      {cert.skills.map((skill, sIdx) => (
+                        <span
+                          key={sIdx}
+                          className="text-[10px] px-1.5 py-0.5 rounded bg-white text-zinc-600 border border-zinc-200/80 font-mono"
+                        >
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="mt-2.5 pt-2 border-t border-zinc-200 flex items-center justify-between">
+                    <span className="text-[10px] text-emerald-700 font-medium flex items-center gap-1">
+                      <Check className="w-3 h-3 text-emerald-600" /> Terverifikasi
+                    </span>
+                    <div className="flex items-center gap-2.5">
+                      {cert.verifyUrl && (
+                        <a
+                          href={cert.verifyUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-600 hover:text-emerald-700 hover:underline"
+                          title="Verifikasi resmi Dicoding"
+                        >
+                          <ExternalLink className="w-3 h-3" />
+                          <span>Verifikasi</span>
+                        </a>
+                      )}
+                      <button
+                        type="button"
+                        onClick={() => setPreviewCert(cert)}
+                        className="inline-flex items-center gap-1 text-[11px] font-semibold text-blue-600 hover:text-blue-700 hover:underline cursor-pointer"
+                      >
+                        <Eye className="w-3 h-3" />
+                        <span>Lihat Asli</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
@@ -355,5 +460,66 @@ Dokumen resmi disiapkan untuk evaluasi perekrut & sistem ATS.
         </div>
       </div>
     </div>
+
+    {/* Lightbox Certificate Preview Modal */}
+    {previewCert && (
+      <div
+        className="fixed inset-0 z-60 bg-zinc-950/85 backdrop-blur-sm flex items-center justify-center p-4 animate-in fade-in duration-150"
+        onClick={() => setPreviewCert(null)}
+      >
+        <div
+          className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full overflow-hidden border border-zinc-200 flex flex-col max-h-[90vh] animate-in zoom-in-95 duration-150"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <div className="px-5 py-3.5 bg-zinc-900 text-white flex items-center justify-between">
+            <div>
+              <h3 className="font-bold text-sm text-zinc-100">{previewCert.name}</h3>
+              <p className="text-xs text-zinc-400 mt-0.5">{previewCert.issuer} • ID: {previewCert.credentialId}</p>
+            </div>
+            <button
+              type="button"
+              onClick={() => setPreviewCert(null)}
+              className="p-1.5 text-zinc-400 hover:text-white rounded-md hover:bg-zinc-800 transition-colors cursor-pointer"
+              title="Tutup Pratinjau"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          </div>
+          <div className="p-4 bg-zinc-100 flex items-center justify-center overflow-auto flex-1">
+            <img
+              src={previewCert.imageUrl}
+              alt={previewCert.name}
+              className="max-w-full max-h-[65vh] object-contain rounded-lg shadow-md border border-zinc-200 bg-white"
+            />
+          </div>
+          <div className="px-5 py-3 bg-zinc-50 border-t border-zinc-200 flex flex-wrap items-center justify-between gap-2 text-xs text-zinc-600">
+            <span>Masa Berlaku: <strong className="text-zinc-800">{previewCert.issueDate} - {previewCert.expiryDate}</strong></span>
+            <div className="flex items-center gap-3">
+              {previewCert.verifyUrl && (
+                <a
+                  href={previewCert.verifyUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 font-semibold text-emerald-600 hover:text-emerald-700 hover:underline"
+                >
+                  <span>Verifikasi Resmi</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+              )}
+              <a
+                href={previewCert.imageUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 font-semibold text-blue-600 hover:text-blue-700 hover:underline"
+              >
+                <span>Buka Ukuran Penuh</span>
+                <ExternalLink className="w-3.5 h-3.5" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    )}
+  </>
   );
 }

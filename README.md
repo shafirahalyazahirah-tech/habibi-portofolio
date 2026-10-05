@@ -32,30 +32,46 @@ Desain difokuskan pada **tingkat konversi (conversion-focused)**, minimalis, mod
    - Console Mockup Widget: Visualisasi metrik bisnis *live-feel* yang memadukan kode dan performa bisnis.
 
 3. **Statistik Ringkas (Social Proof Bar):**
-   - **100% Peningkatan Omset** (Bisnis Batu Alam lokal).
-   - **5-13 Unit Closing/Bulan** (Showroom KS Motor).
-   - **4+ Tahun Pengalaman** (Web Development & Marketing).
+   - **Pertumbuhan Omset +150%** (Bisnis Batu Alam lokal).
+   - **Pertumbuhan Penjualan Digital +160%** (Showroom KS Motor).
+   - **1.000 m² Supervisi Lapangan** (Proyek Mako TNI Kota Banjar).
+   - **4+ Tahun Pengalaman** (Web Development, Performance Marketing & Operations).
 
 4. **Experience Section (Track Record Profesional):**
    - **Digital Growth & Operations Lead @ Batu Alam Halfa Barokah** (Jan 2026 - Sekarang)
-     - Peningkatan omset ~100% (dari Rp 50-70 juta menjadi Rp 130 juta/bulan).
-     - Pembangunan ekosistem web khusus (`batualamhalfabarokah.com`) & aplikasi kasir/operasional internal.
-     - Pengelolaan kampanye Meta Ads (WhatsApp Conversion).
+     - Mendongkrak pertumbuhan omset bisnis lokal hingga +150%.
+     - Pembangunan ekosistem web katalog (`batualamhalfabarokah.com`) & aplikasi kasir/stok internal.
+     - Pengelolaan kampanye Meta Ads (WhatsApp Conversion) didukung video inspeksi produk mandiri.
    - **Digital Marketing Specialist @ KS Motor Tasikmalaya** (Jun 2024 - Mei 2025)
-     - Penjualan 5-13 unit mobil bekas per bulan secara konsisten.
-     - Pengelolaan budget Meta Ads Rp 3 juta/bulan untuk konversi high-ticket.
-     - Optimalisasi saluran WhatsApp & kualifikasi prospek survei showroom.
+     - Mengakselerasi pertumbuhan penjualan digital hingga +160% (dari baseline maksimal 5 unit tembus ke rekor 13 unit/bulan).
+     - Pengelolaan budget Meta Ads Rp 3 juta/bulan untuk konversi high-ticket showroom.
+     - Optimalisasi saluran WhatsApp & kualifikasi prospek survei langsung ke showroom.
 
-5. **Skills Section (Interactive Filter & Categories):**
-   - Filter interaktif: *Semua*, *Technical Stack*, dan *Marketing & Growth*.
-   - **Technical Stack:** React, Tailwind CSS, Laravel, AI-Assisted Workflow (Cursor/Claude), cPanel, REST API, Git.
-   - **Marketing & Growth:** Meta Ads, Google Analytics 4, Tag Manager, Copywriting, WhatsApp Closing, Bisnis Operasional, CPL Optimization.
+5. **Skills & Verified Credentials Section:**
+   - Filter interaktif: *Semua Pilar*, *Web & IT*, *Performance Marketing*, *High-Ticket Sales*, *Operasional & Media*.
+   - **Engineering & Systems:** React, Tailwind CSS, Laravel 11, Workflow Akselerasi AI (AntiGravity/Cursor), cPanel, Vercel, REST API, Git.
+   - **Acquisition & Data:** Meta Ads, Google Analytics 4, Tag Manager, Search Console, ROI / CPL Optimization.
+   - **High-Ticket Sales & Operations:** High-Ticket Closing via WhatsApp, SOP Kasir & Gudang, Supervisi Lapangan (1.000 m²), Produksi Video Iklan (CapCut).
+   - **7 Kredensial Resmi Industri (Verified Credentials):**
+     1. *Dicoding Indonesia:* Belajar Dasar Pemrograman JavaScript (ID: `2VX31G853ZYQ`).
+     2. *Google:* Google Analytics Certification (ID: `163022780`).
+     3. *Google:* Grow Offline Sales Certification (ID: `163507187`).
+     4. *HubSpot Academy:* Digital Marketing Certified (ID: `5a9223bcd3b549d484e9f3d9362e3419`).
+     5. *HubSpot Academy:* Social Media Certified (ID: `45793ae5088d4e55afeed5883d2de275`).
+     6. *Dicoding Indonesia x Game Dev Batam:* Sharing Session Game Design.
+     7. *Politeknik LP3I:* Seminar Nasional Agility Transformation Of Millennials (No: `420/SW/POLTEK-LP3I/IV/21`).
+   - Dilengkapi kartu interaktif dengan verifikasi resmi dan pratinjau fisik (*lightbox popup*).
 
-6. **Featured Projects (Studi Kasus Lengkap):**
-   - **Studi Kasus 1:** *Digitalisasi Bisnis Batu Alam Lokal (Halfa Barokah)* — Tantangan, Solusi, Hasil Lonjakan Omset Rp 130 Juta/Bulan, Tech Tags & tombol diskusi WhatsApp.
-   - **Studi Kasus 2:** *Periklanan Otomotif High-Ticket (KS Motor)* — Tantangan penjualan mobil bekas, Solusi Meta Ads Rp 3 Jt/Bln, Hasil 5-13 closing/bulan, Tech Tags & tombol diskusi strategi.
+6. **Executive Resume (Standar ATS A4 - 2 Halaman):**
+   - Modal CV interaktif dengan salin teks lengkap dan unduh PDF A4 presisi murni tanpa *overflow*.
+   - Seksi *Education*: Ahli Madya Komputer (A.Md.Kom.) — Manajemen Informatika (Politeknik LP3I) dengan penekanan pada fondasi Algoritma & Struktur Data (A) serta Presentasi & Negosiasi (B+).
+   - Seksi *Certifications & Licenses* terstruktur rapi di Halaman 2 tepat setelah *Education*.
 
-7. **Footer & Contact Section (High-Conversion Closing):**
+7. **Featured Projects (Studi Kasus Lengkap):**
+   - **Studi Kasus 1:** *Digitalisasi Bisnis Batu Alam Lokal (Halfa Barokah)* — Tantangan inventaris manual, Solusi Web & Kasir Digital, Hasil Pertumbuhan Omset +150%, Tech Tags & tombol konsultasi WhatsApp.
+   - **Studi Kasus 2:** *Periklanan Otomotif High-Ticket (KS Motor)* — Tantangan kualifikasi leads mobil bekas, Solusi Meta Ads Rp 3 Jt/Bln, Hasil Pertumbuhan Penjualan Digital +160% (dari baseline maksimal 5 unit tembus ke 13 unit/bulan), Tech Tags & tombol diskusi strategi.
+
+8. **Footer & Contact Section (High-Conversion Closing):**
    - Pesan penutup: *"Terbuka untuk diskusi proyek paruh waktu atau konsultasi strategi digital."*
    - Pemilih Topik Diskusi Cepat (*Web & Sistem*, *Meta Ads*, *Konsultasi Growth*) yang otomatis menyesuaikan pesan WhatsApp.
    - Tombol CTA WhatsApp Utama berukuran besar.
