@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { MessageCircle, Mail, Phone, Copy, Check, FileText, MapPin, Clock } from 'lucide-react';
-import profilePhoto from '../assets/habibi-profile.jpg';
+const profilePhoto = '/habibi-profile.jpg';
 import { personalInfo } from '../data/portfolioData';
 
 // Custom clean SVGs for Instagram, Facebook, and LinkedIn for build safety
@@ -76,7 +76,7 @@ export default function Contact({ onOpenResume }) {
                 <Clock className="w-4 h-4 text-zinc-400 mt-0.5 flex-shrink-0" />
                 <div>
                   <span className="font-semibold text-zinc-900 block">Fokus Waktu Kerja (Deep Work):</span>
-                  Fleksibel & asinkronus, diprioritaskan pada sesi malam (19.30 – 22.30 WIB) dan subuh untuk pengembangan kode & pengelolaan kampanye iklan.
+                  Fleksibel & asinkronus, diprioritaskan pada sesi malam (19.30 - 22.30 WIB) dan subuh untuk pengembangan kode & pengelolaan kampanye iklan.
                 </div>
               </div>
             </div>

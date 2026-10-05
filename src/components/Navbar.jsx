@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Menu, X, MessageCircle, FileText } from 'lucide-react';
-import profilePhoto from '../assets/habibi-profile.jpg';
+const profilePhoto = '/habibi-profile.jpg';
 import { personalInfo } from '../data/portfolioData';
 
 export default function Navbar({ onOpenResume }) {
