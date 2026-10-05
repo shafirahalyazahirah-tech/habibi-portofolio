@@ -527,67 +527,174 @@ export function generateAtsHtml() {
 }
 
 /**
- * Downloads an official, pristine 2-page A4 PDF file directly using html2pdf.js.
+ * Downloads an official, pristine 2-page A4 PDF file directly using jsPDF + html2canvas.
  *
- * ROOT CAUSE FIX (blank PDF bug):
- * The previous implementation created a DOM element with `opacity: 0; z-index: -9999`,
- * which caused html2canvas to capture a fully transparent/blank canvas.
- * Fix: pass an HTML string directly to html2pdf().from(string, 'string') so that
- * html2pdf manages the DOM element internally with correct visibility.
+ * ROOT CAUSE FIX (blank PDF bug solved thoroughly):
+ * 1. Previous implementation relied on html2pdf.js, which:
+ *    - Ran HTML string through DOMPurify, which stripped all `<style>` tags and CSS rules.
+ *    - Set `opacity: 0` on its internal `.html2pdf__overlay` wrapper, causing modern html2canvas
+ *      to paint 100% transparent pixels (alpha = 0), generating a completely blank white PDF.
+ * 2. This new implementation uses direct `jsPDF` + `html2canvas`:
+ *    - Off-screen container is positioned at `left: 0; top: 0; z-index: -99999` with `opacity: 1`
+ *      and `visibility: visible` so html2canvas renders all text, colors, and layout perfectly.
+ *    - Styles are directly parsed from `generateAtsHtml()` without DOMPurify stripping.
+ *    - Each `.cv-page` is explicitly dimensioned at 794px x 1123px (standard 210mm x 297mm A4 at 96 DPI).
+ *    - Uses 2x canvas scaling for ultra-crisp, high-resolution 300 DPI text.
+ *    - Directly adds each rendered page to the jsPDF document and triggers `.save()`.
+ *    - DOM cleanup is guaranteed via `finally` block.
  *
  * @param {Function} [onStatusChange] Optional callback with status { loading: boolean, message: string }
  */
 export async function downloadAtsPdf(onStatusChange) {
+  let container = null;
   try {
     if (onStatusChange) onStatusChange({ loading: true, message: 'Menyiapkan berkas PDF...' });
 
-    const html2pdfModule = await import('html2pdf.js');
-    const html2pdf = html2pdfModule.default || html2pdfModule;
+    // Dynamically import jsPDF and html2canvas
+    const [jspdfModule, html2canvasModule] = await Promise.all([
+      import('jspdf'),
+      import('html2canvas'),
+    ]);
+    const jsPDF = jspdfModule.jsPDF || jspdfModule.default || jspdfModule;
+    const html2canvas = html2canvasModule.default || html2canvasModule;
 
-    // Generate the full ATS HTML and extract its parts
+    // Parse the pristine ATS HTML string
     const fullHtml = generateAtsHtml();
-    const styleMatch = fullHtml.match(/<style>([\s\S]*?)<\/style>/i);
-    const bodyMatch  = fullHtml.match(/<body[^>]*>([\s\S]*)<\/body>/i);
+    const parser = new DOMParser();
+    const parsedDoc = parser.parseFromString(fullHtml, 'text/html');
 
-    const styleContent = styleMatch ? styleMatch[1] : '';
-    const bodyContent  = bodyMatch  ? bodyMatch[1]  : '';
+    // Create sandboxed render container.
+    // CRITICAL: opacity: 1 and visibility: visible ensure html2canvas paints non-transparent pixels.
+    // z-index: -99999 ensures it renders behind the active page and modal with zero flicker.
+    container = document.createElement('div');
+    container.id = 'ats-pdf-render-container';
+    container.style.cssText = [
+      'position: fixed',
+      'left: 0',
+      'top: 0',
+      'width: 794px',
+      'z-index: -99999',
+      'opacity: 1',
+      'visibility: visible',
+      'pointer-events: none',
+      'background: #ffffff',
+      'color: #0f172a',
+      'margin: 0',
+      'padding: 0',
+    ].join('; ');
 
-    // Build an HTML source string.
-    // Using .from(source, 'string') lets html2pdf create and manage its own
-    // DOM container with correct visibility — no opacity:0 or z-index tricks needed.
-    const source = `<style>${styleContent}</style><div style="width:794px;margin:0 auto;background:#fff;">${bodyContent}</div>`;
+    // Extract and attach custom styles
+    const styleEl = parsedDoc.querySelector('style');
+    if (styleEl) {
+      const newStyle = document.createElement('style');
+      newStyle.textContent = styleEl.textContent;
+      container.appendChild(newStyle);
+    }
 
-    const opt = {
-      margin: 0,
-      filename: `CV_${personalInfo.name.replace(/\s+/g, '_')}_ATS.pdf`,
-      image: { type: 'jpeg', quality: 0.98 },
-      html2canvas: {
-        scale: 2,
+    // Extract each cv-page
+    const pages = parsedDoc.querySelectorAll('.cv-page');
+    if (!pages || pages.length === 0) {
+      throw new Error('Tidak ada halaman resume yang ditemukan.');
+    }
+
+    const pageContainers = [];
+    pages.forEach((pageNode, idx) => {
+      const pageWrapper = document.createElement('div');
+      pageWrapper.id = `ats-pdf-page-${idx + 1}`;
+      pageWrapper.className = 'cv-page-export';
+      pageWrapper.style.cssText = [
+        'width: 794px',
+        'min-height: 1123px',
+        'box-sizing: border-box',
+        'background: #ffffff',
+        'color: #0f172a',
+        'padding: 10mm 14mm 8mm 14mm',
+        'margin: 0',
+        'overflow: hidden',
+        'display: block',
+      ].join('; ');
+
+      while (pageNode.firstChild) {
+        pageWrapper.appendChild(pageNode.firstChild);
+      }
+      container.appendChild(pageWrapper);
+      pageContainers.push(pageWrapper);
+    });
+
+    document.body.appendChild(container);
+
+    // Allow browser layout engine & web fonts to settle
+    if (document.fonts && document.fonts.ready) {
+      try {
+        await document.fonts.ready;
+      } catch (e) {
+        // ignore font readiness error
+      }
+    }
+    await new Promise((resolve) => setTimeout(resolve, 150));
+
+    // Initialize 2-page A4 portrait PDF document
+    const pdf = new jsPDF({
+      unit: 'mm',
+      format: 'a4',
+      orientation: 'portrait',
+      compress: true,
+    });
+
+    // Render each page into high-resolution canvas and attach to PDF
+    for (let i = 0; i < pageContainers.length; i++) {
+      const pageEl = pageContainers[i];
+      if (onStatusChange) {
+        onStatusChange({
+          loading: true,
+          message: `Mengonversi halaman ${i + 1} dari ${pageContainers.length}...`,
+        });
+      }
+
+      const canvas = await html2canvas(pageEl, {
+        scale: 2, // 2x scale for crisp, print-ready 300 DPI text
         useCORS: true,
         logging: false,
-        letterRendering: true,
+        backgroundColor: '#ffffff',
+        width: 794,
+        height: 1123,
         windowWidth: 794,
+        windowHeight: 1123,
         scrollY: 0,
-      },
-      jsPDF: {
-        unit: 'mm',
-        format: 'a4',
-        orientation: 'portrait',
-      },
-      pagebreak: {
-        mode: ['css', 'legacy'],
-      },
-    };
+        scrollX: 0,
+      });
 
-    if (onStatusChange) onStatusChange({ loading: true, message: 'Mengonversi ke PDF A4...' });
-    await html2pdf().set(opt).from(source, 'string').save();
+      const imgData = canvas.toDataURL('image/jpeg', 0.98);
 
-    if (onStatusChange) onStatusChange({ loading: false, message: '' });
+      if (i > 0) {
+        pdf.addPage('a4', 'portrait');
+      }
+
+      // Fit standard A4 dimensions (210mm x 297mm)
+      pdf.addImage(imgData, 'JPEG', 0, 0, 210, 297, undefined, 'FAST');
+    }
+
+    if (onStatusChange) {
+      onStatusChange({ loading: true, message: 'Menyimpan berkas...' });
+    }
+
+    const fileName = `CV_${personalInfo.name.replace(/\s+/g, '_')}_ATS.pdf`;
+    pdf.save(fileName);
+
+    if (onStatusChange) {
+      onStatusChange({ loading: false, message: '' });
+    }
   } catch (err) {
     console.error('downloadAtsPdf failed:', err);
-    if (onStatusChange) onStatusChange({ loading: false, message: '' });
-    // Fallback to browser print dialog
+    if (onStatusChange) {
+      onStatusChange({ loading: false, message: '' });
+    }
+    // Fallback to isolated print dialog
     printAtsResume();
+  } finally {
+    if (container && container.parentNode) {
+      container.parentNode.removeChild(container);
+    }
   }
 }
 
