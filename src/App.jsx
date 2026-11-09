@@ -1,40 +1,31 @@
-import React, { useState } from 'react';
-import Navbar from './components/Navbar';
+import Header from './components/Header';
 import Hero from './components/Hero';
-import Stats from './components/Stats';
+import Work from './components/Work';
 import Experience from './components/Experience';
-import Projects from './components/Projects';
 import Skills from './components/Skills';
+import Certificates from './components/Certificates';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import ResumeModal from './components/ResumeModal';
 
 export default function App() {
-  const [isResumeOpen, setIsResumeOpen] = useState(false);
-
   return (
-    <div className="min-h-screen bg-white text-zinc-900 flex flex-col font-sans selection:bg-blue-600 selection:text-white">
-      {/* Sticky Header */}
-      <Navbar onOpenResume={() => setIsResumeOpen(true)} />
-
-      {/* Main Single Page Application Content */}
-      <main className="flex-grow">
-        <Hero onOpenResume={() => setIsResumeOpen(true)} />
-        <Stats />
+    <>
+      <a
+        href="#konten"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded-md focus:bg-ink focus:px-4 focus:py-2 focus:text-paper"
+      >
+        Lewati ke konten
+      </a>
+      <Header />
+      <main id="konten">
+        <Hero />
+        <Work />
         <Experience />
-        <Projects />
         <Skills />
-        <Contact onOpenResume={() => setIsResumeOpen(true)} />
+        <Certificates />
+        <Contact />
       </main>
-
-      {/* Footer */}
-      <Footer onOpenResume={() => setIsResumeOpen(true)} />
-
-      {/* Executive Resume / ATS-Ready Modal */}
-      <ResumeModal
-        isOpen={isResumeOpen}
-        onClose={() => setIsResumeOpen(false)}
-      />
-    </div>
+      <Footer />
+    </>
   );
 }

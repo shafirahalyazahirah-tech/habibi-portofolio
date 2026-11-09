@@ -1,107 +1,70 @@
 @import "tailwindcss";
 
+@theme {
+  --font-sans: "Schibsted Grotesk", ui-sans-serif, system-ui, "Segoe UI", Roboto, sans-serif;
+
+  --color-paper: #f5f6f8;
+  --color-surface: #ffffff;
+  --color-ink: #14213d;
+  --color-body: #374151;
+  --color-muted: #6b7280;
+  --color-rule: #dce0e6;
+  --color-accent: #2563eb;
+  --color-accent-strong: #1d4ed8;
+  --color-live: #15803d;
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    scroll-padding-top: 5rem;
   }
 
-  code, pre, .font-mono {
-    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  }
-}
-
-/* Subtle scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: #f4f4f5;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #d4d4d8;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #a1a1aa;
-}
-
-/* ============================================================
-   PRINT / PDF EXPORT STYLES
-   ============================================================ */
-@media print {
-  @page {
-    size: A4 portrait;
-    margin: 0 !important;
-  }
-
-  /* Hide background website when resume modal is open */
-  body.resume-modal-active header,
-  body.resume-modal-active footer,
-  body.resume-modal-active main,
-  .no-print {
-    display: none !important;
-  }
-
-  /* Reset body and html for clean print layout */
-  html,
   body {
-    background: #ffffff !important;
-    color: #18181b !important;
-    font-size: 10pt !important;
-    line-height: 1.4 !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    width: 100% !important;
-    overflow: visible !important;
+    background: var(--color-paper);
+    color: var(--color-body);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
   }
 
-  /* Remove fixed/overlay wrapper constraints */
-  .printable-resume-backdrop {
-    position: static !important;
-    inset: auto !important;
-    background: #ffffff !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    overflow: visible !important;
-    display: block !important;
-    backdrop-filter: none !important;
-    z-index: auto !important;
+  ::selection {
+    background: var(--color-ink);
+    color: var(--color-paper);
   }
 
-  .printable-resume-dialog {
-    position: static !important;
-    max-height: none !important;
-    max-width: 100% !important;
-    width: 100% !important;
-    box-shadow: none !important;
-    border: none !important;
-    overflow: visible !important;
-    border-radius: 0 !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    background: #ffffff !important;
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+    border-radius: 4px;
   }
 
-  .printable-resume-content {
-    overflow: visible !important;
-    max-height: none !important;
-    padding: 0 !important;
-    margin: 0 !important;
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+    }
   }
+}
 
-  /* Ensure items don't break awkwardly across pages */
-  .print-avoid-break {
-    break-inside: avoid !important;
-    page-break-inside: avoid !important;
-  }
+/* Tailwind v4: custom classes that other rules @apply must be declared with @utility. */
+@utility btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-md px-4 py-2.5 text-sm font-semibold transition-colors disabled:cursor-wait disabled:opacity-70;
+}
+@utility btn-primary {
+  @apply btn bg-ink text-paper hover:bg-accent-strong;
+}
+@utility btn-secondary {
+  @apply btn border border-rule bg-surface text-ink hover:border-ink;
+}
+@utility link {
+  @apply font-medium text-accent underline decoration-accent/30 underline-offset-4 hover:decoration-accent;
+}
 
-  /* Force print color accuracy */
-  * {
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
-  }
+dialog::backdrop {
+  background: rgb(20 33 61 / 0.6);
 }

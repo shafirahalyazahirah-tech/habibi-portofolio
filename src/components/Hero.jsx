@@ -1,130 +1,71 @@
-import React from 'react';
-import { ArrowDown, MessageCircle, FileText, CheckCircle2 } from 'lucide-react';
-const profilePhoto = '/habibi-profile.jpg';
-import { personalInfo } from '../data/portfolioData';
+import { ArrowDownRight, MapPin } from 'lucide-react';
+import { profile, projects } from '../data/portfolioData';
+import DownloadCvButton from './DownloadCvButton';
 
-export default function Hero({ onOpenResume }) {
-  const waUrl = `https://wa.me/${personalInfo.phone}?text=${encodeURIComponent(
-    'Halo Habibi, saya melihat portofolio Anda dan tertarik mendiskusikan peluang proyek / strategi pertumbuhan digital.'
-  )}`;
+const liveProjects = projects.filter((p) => p.link);
 
+export default function Hero() {
   return (
-    <section id="about" className="pt-12 pb-16 sm:pt-20 sm:pb-24 border-b border-zinc-200 bg-white">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          {/* Left Column: Authentic Executive Positioning */}
-          <div className="lg:col-span-7 space-y-6 text-left">
-            {/* Status Indicator */}
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-100 border border-zinc-200 text-zinc-700 text-xs font-medium">
-              <span className="w-2 h-2 rounded-full bg-emerald-600"></span>
-              <span>{personalInfo.availability}</span>
-            </div>
+    <section id="top" className="mx-auto max-w-6xl px-5 pt-14 pb-16 sm:px-8 sm:pt-20 sm:pb-24">
+      <div className="grid gap-12 md:grid-cols-[1fr_auto] md:items-end">
+        <div>
+          <p className="text-base font-medium text-muted">
+            {profile.role}
+          </p>
+          <h1 className="mt-3 text-[clamp(2.75rem,8vw,6rem)] leading-[0.95] font-bold tracking-[-0.035em] text-ink">
+            {profile.name}
+          </h1>
+          <p className="mt-5 text-xl font-medium text-ink sm:text-2xl">{profile.headline}</p>
+          <p className="mt-5 max-w-[34rem] text-lg leading-relaxed">{profile.intro}</p>
 
-            {/* Main Headline */}
-            <div className="space-y-2">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-zinc-900 leading-tight">
-                {personalInfo.name}
-              </h1>
-              <p className="text-lg sm:text-xl font-semibold text-blue-600">
-                {personalInfo.headline}
-              </p>
-            </div>
-
-            {/* Sub-headline */}
-            <p className="text-base sm:text-lg text-zinc-600 leading-relaxed font-normal">
-              {personalInfo.subheadline}
-            </p>
-
-            {/* Bio summary */}
-            <div className="p-3.5 rounded-lg bg-zinc-50 border border-zinc-200 text-xs sm:text-sm text-zinc-700 leading-relaxed">
-              <p>
-                <strong>Profil Profesional:</strong> Ahli Madya Komputer (A.Md.Kom., Politeknik LP3I) dengan pengalaman 4+ tahun memadukan Web Engineering (React, Laravel), kampanye Meta Ads terukur, kepemimpinan tim penjualan lapangan B2C, serta supervisi operasional bisnis.
-              </p>
-            </div>
-
-            {/* Action Buttons */}
-            <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-              <a
-                href={waUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 active:scale-[0.98] rounded-lg shadow-xs transition-all duration-150"
-              >
-                <MessageCircle className="w-4 h-4" />
-                <span>Konsultasi via WhatsApp</span>
-              </a>
-
-              <a
-                href="#experience"
-                className="inline-flex items-center justify-center gap-2 px-5 py-3.5 text-sm font-semibold text-zinc-700 hover:text-zinc-900 bg-zinc-100 hover:bg-zinc-200 active:scale-[0.98] border border-zinc-200 rounded-lg transition-all duration-150"
-              >
-                <span>Lihat Rekam Jejak Karir</span>
-                <ArrowDown className="w-4 h-4 text-zinc-500" />
-              </a>
-
-              <button
-                onClick={onOpenResume}
-                className="inline-flex items-center justify-center gap-2 px-5 py-3.5 text-sm font-semibold text-zinc-700 hover:text-zinc-900 bg-white hover:bg-zinc-50 active:scale-[0.98] border border-zinc-200 rounded-lg transition-all duration-150 cursor-pointer"
-              >
-                <FileText className="w-4 h-4 text-zinc-500" />
-                <span>Ringkasan CV (ATS)</span>
-              </button>
-            </div>
-
-            {/* Trust Points */}
-            <div className="pt-4 border-t border-zinc-100 grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs text-zinc-600">
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0" />
-                <span>Rekayasa Web & Operasional</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0" />
-                <span>Meta Ads & WhatsApp Closing</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0" />
-                <span>Dokumentasi Kerja Asinkronus</span>
-              </div>
-            </div>
+          <div className="mt-8 flex flex-wrap items-start gap-3">
+            <a href="#karya" className="btn-secondary">
+              <ArrowDownRight className="size-4" aria-hidden="true" />
+              Lihat karya
+            </a>
+            <DownloadCvButton />
           </div>
 
-          {/* Right Column: Editorial Studio Portrait */}
-          <div className="lg:col-span-5">
-            <div className="relative mx-auto max-w-sm sm:max-w-md">
-              <div className="bg-zinc-50 rounded-2xl border border-zinc-200 p-3 sm:p-4 shadow-sm">
-                {/* Photo Frame */}
-                <div className="relative rounded-xl overflow-hidden aspect-[4/5] bg-zinc-200">
-                  <img
-                    src={profilePhoto}
-                    alt={personalInfo.name}
-                    className="w-full h-full object-cover object-top"
-                    loading="eager"
-                  />
-                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-zinc-950/85 via-zinc-950/20 to-transparent p-4 text-white text-left">
-                    <p className="text-base font-semibold leading-tight text-white">{personalInfo.name}</p>
-                    <p className="text-xs text-zinc-300 mt-0.5">A.Md.Kom. • Digital Growth & Technical Marketer</p>
-                    <p className="text-[11px] text-zinc-300 font-mono mt-1">{personalInfo.location}</p>
-                  </div>
-                </div>
-
-                {/* Direct Verification Metrics Under Photo */}
-                <div className="mt-3 grid grid-cols-2 gap-2 text-left">
-                  <div className="p-3 rounded-lg bg-white border border-zinc-200">
-                    <span className="text-[11px] font-medium text-zinc-500 block">Batu Alam Halfa</span>
-                    <span className="text-base font-bold text-zinc-900 block mt-0.5">+150%</span>
-                    <span className="text-[11px] text-emerald-600 font-medium">Pertumbuhan Omset</span>
-                  </div>
-
-                  <div className="p-3 rounded-lg bg-white border border-zinc-200">
-                    <span className="text-[11px] font-medium text-zinc-500 block">Showroom KS Motor</span>
-                    <span className="text-base font-bold text-zinc-900 block mt-0.5">+160%</span>
-                    <span className="text-[11px] text-blue-600 font-medium">Penjualan Digital</span>
-                  </div>
-                </div>
-              </div>
+          <dl className="mt-8 flex flex-wrap gap-x-8 gap-y-3 text-sm">
+            <div className="flex items-center gap-2">
+              <dt className="sr-only">Lokasi</dt>
+              <MapPin className="size-4 text-muted" aria-hidden="true" />
+              <dd>{profile.location}</dd>
             </div>
-          </div>
+            <div className="flex items-center gap-2">
+              <dt className="sr-only">Status</dt>
+              <span className="size-2 rounded-full bg-live" aria-hidden="true" />
+              <dd>{profile.availability}</dd>
+            </div>
+          </dl>
         </div>
+
+        <img
+          src={profile.photo}
+          alt={`Foto ${profile.name}`}
+          width="480"
+          height="600"
+          fetchPriority="high"
+          className="aspect-[4/5] w-full max-w-[18rem] rounded-lg object-cover object-top md:w-72"
+        />
+      </div>
+
+      <div className="mt-16 border-t border-rule pt-6">
+        <h2 className="text-sm font-semibold text-ink">Sistem yang sedang berjalan</h2>
+        <ul className="mt-4 grid gap-4 sm:grid-cols-3">
+          {liveProjects.map((p) => (
+            <li key={p.id}>
+              <a href={p.link.href} target="_blank" rel="noopener noreferrer" className="group block">
+                <span className="flex items-center gap-2 text-sm text-muted">
+                  <span className="size-2 rounded-full bg-live" aria-hidden="true" />
+                  {p.client}
+                </span>
+                <span className="mt-1 block font-semibold text-ink group-hover:text-accent">{p.title}</span>
+                <span className="mt-0.5 block text-sm text-accent">{p.link.label}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );
