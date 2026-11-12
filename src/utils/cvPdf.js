@@ -95,7 +95,7 @@ export function buildCvPdf() {
     write(p.result ? `${p.summary} ${p.result}` : p.summary, { after: 2 });
   });
 
-  heading('KEAHLIAN');
+  heading('SKILL');
   skills.forEach((s) => write(`${s.group}: ${s.items.join(', ')}`, { after: 1 }));
 
   heading('PENDIDIKAN');
