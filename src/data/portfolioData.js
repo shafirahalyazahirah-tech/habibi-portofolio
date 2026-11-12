@@ -7,7 +7,7 @@ export const profile = {
   jobTitle: 'Web Developer & Digital Marketer',
   headline: 'Web Developer & Digital Marketer dengan Pengalaman Sales dan Operasional',
   intro:
-    'Sejak 2020 saya bekerja langsung di penjualan, operasional showroom, dan pengawasan proyek sebelum membangun sistem digital. Kini saya membuat website katalog, aplikasi kasir dan keuangan, serta kampanye Meta Ads agar usaha kecil punya pencatatan rapi dan alur pembeli lewat WhatsApp.',
+    'Sejak 2020 saya bekerja langsung di penjualan, operasional showroom, dan pengawasan proyek sebelum membangun sistem digital. Kini saya membuat website katalog, aplikasi dan keuangan, serta kampanye Meta Ads agar usaha kecil punya pencatatan rapi dan alur pembeli lewat WhatsApp.',
   about: [
     'Saya lulusan Manajemen Informatika Politeknik LP3I dan sudah bekerja sejak 2020: memimpin tim sales lapangan, mengurus operasional showroom, mengawasi proyek pemasangan batu alam, sampai memegang iklan dan website untuk bisnis keluarga.',
     'Dari situ saya belajar bahwa usaha jarang butuh teknologi yang rumit. Yang dibutuhkan adalah pencatatan rapi, halaman yang mudah ditemukan di Google, dan alur WhatsApp yang membantu penjualan — itulah pendekatan yang saya bawa di Hanucazari Digital maupun saat berkolaborasi dalam tim.',
