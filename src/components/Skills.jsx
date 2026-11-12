@@ -4,7 +4,7 @@ import Section from './Section';
 
 export default function Skills() {
   return (
-    <Section id="skill" title="Skill" intro="Yang saya pakai sehari-hari, bukan sekadar pernah dicoba.">
+    <Section id="skill" title="Skill" intro="Alat dan keahlian yang dipakai langsung di proyek nyata — menggabungkan sisi teknis aplikasi, pemasaran iklan, dan alur penjualan.">
       <div className="grid gap-x-10 gap-y-10 sm:grid-cols-2">
         {skills.map((s) => (
           <div key={s.id}>

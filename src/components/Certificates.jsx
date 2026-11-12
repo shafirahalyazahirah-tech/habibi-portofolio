@@ -25,17 +25,22 @@ export default function Certificates() {
   };
 
   return (
-    <Section id="sertifikasi" title="Sertifikasi" intro="Klik untuk melihat sertifikat aslinya.">
+    <Section id="sertifikasi" title="Sertifikasi" intro="Bukti pelatihan dan sertifikasi resmi yang dapat diperiksa langsung lampirannya.">
       <ul className="divide-y divide-rule">
         {certs.map((c) => (
           <li key={c.id} className="flex flex-col gap-3 py-5 first:pt-0 sm:flex-row sm:items-start sm:justify-between">
             <div>
               <h3 className="flex items-start gap-2 font-semibold text-ink">
-                <BadgeCheck className="mt-0.5 size-4 shrink-0 text-live" aria-hidden="true" />
+                <BadgeCheck
+                  className={`mt-0.5 size-4 shrink-0 ${c.expired ? 'text-muted' : 'text-live'}`}
+                  aria-hidden="true"
+                />
                 {c.name}
               </h3>
               <p className="mt-1 pl-6 text-sm text-muted">
-                {c.issuer}, {c.expires ? `berlaku ${c.issued} sampai ${c.expires}` : `terbit ${c.issued}`}
+                {c.expired
+                  ? `${c.issuer} · Masa berlaku: ${c.issued} – ${c.expires} (berakhir; jadwal perpanjangan)`
+                  : `${c.issuer}, ${c.expires ? `berlaku ${c.issued} sampai ${c.expires}` : `terbit ${c.issued}`}`}
               </p>
               <p className="mt-0.5 pl-6 text-xs break-all text-muted">ID kredensial {c.credentialId}</p>
             </div>

@@ -1,8 +1,6 @@
 import { ArrowDownRight, MapPin } from 'lucide-react';
-import { profile, projects } from '../data/portfolioData';
+import { profile } from '../data/portfolioData';
 import DownloadCvButton from './DownloadCvButton';
-
-const liveProjects = projects.filter((p) => p.link);
 
 export default function Hero() {
   return (
@@ -48,24 +46,6 @@ export default function Hero() {
           fetchPriority="high"
           className="aspect-[4/5] w-full max-w-[18rem] rounded-lg object-cover object-top md:w-72"
         />
-      </div>
-
-      <div className="mt-16 border-t border-rule pt-6">
-        <h2 className="text-sm font-semibold text-ink">Sistem yang sedang berjalan</h2>
-        <ul className="mt-4 grid gap-4 sm:grid-cols-3">
-          {liveProjects.map((p) => (
-            <li key={p.id}>
-              <a href={p.link.href} target="_blank" rel="noopener noreferrer" className="group block">
-                <span className="flex items-center gap-2 text-sm text-muted">
-                  <span className="size-2 rounded-full bg-live" aria-hidden="true" />
-                  {p.client}
-                </span>
-                <span className="mt-1 block font-semibold text-ink group-hover:text-accent">{p.title}</span>
-                <span className="mt-0.5 block text-sm text-accent">{p.link.label}</span>
-              </a>
-            </li>
-          ))}
-        </ul>
       </div>
     </section>
   );

@@ -7,7 +7,7 @@ export default function Work() {
     <Section
       id="portofolio"
       title="Portofolio"
-      intro="Aplikasi dan kampanye yang saya bangun atau jalankan sendiri, untuk usaha nyata di Tasikmalaya."
+      intro="Website, aplikasi internal, dan kampanye iklan yang saya rancang dan kelola untuk usaha nyata di Tasikmalaya."
     >
       <ol className="divide-y divide-rule">
         {projects.map((p) => (

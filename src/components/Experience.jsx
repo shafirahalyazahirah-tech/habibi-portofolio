@@ -3,7 +3,7 @@ import Section from './Section';
 
 export default function Experience() {
   return (
-    <Section id="pengalaman" title="Pengalaman" intro="Bekerja sejak 2020, dari sales lapangan sampai membangun sistem.">
+    <Section id="pengalaman" title="Pengalaman" intro="Bekerja sejak 2020: dari sales lapangan, showroom otomotif, hingga membangun website dan sistem usaha.">
       <div className="mb-12 max-w-[65ch] space-y-4 text-lg leading-relaxed">
         {profile.about.map((para) => (
           <p key={para.slice(0, 24)}>{para}</p>

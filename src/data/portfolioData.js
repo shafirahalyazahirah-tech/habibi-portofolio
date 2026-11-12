@@ -4,12 +4,13 @@
 export const profile = {
   name: 'Habibi Nurrohman',
   role: 'Founder Hanucazari Digital',
-  headline: 'Web Developer & Digital Marketer',
+  jobTitle: 'Web Developer & Digital Marketer',
+  headline: 'Web Developer & Digital Marketer dengan Pengalaman Sales dan Operasional',
   intro:
-    'Saya membangun website, aplikasi kasir, dan sistem pencatatan untuk usaha lokal, lalu membantu usaha itu mendapat pembeli lewat iklan dan WhatsApp.',
+    'Sejak 2020 saya bekerja langsung di penjualan, operasional showroom, dan pengawasan proyek sebelum membangun sistem digital. Kini saya membuat website katalog, aplikasi kasir dan keuangan, serta kampanye Meta Ads agar usaha kecil punya pencatatan rapi dan alur pembeli lewat WhatsApp.',
   about: [
     'Saya lulusan Manajemen Informatika Politeknik LP3I dan sudah bekerja sejak 2020: memimpin tim sales lapangan, mengurus operasional showroom, mengawasi proyek pemasangan batu alam, sampai memegang iklan dan website untuk bisnis keluarga.',
-    'Dari situ saya belajar bahwa usaha kecil jarang butuh teknologi yang rumit. Mereka butuh pencatatan yang rapi, halaman yang bisa ditemukan di Google, dan alur WhatsApp yang menutup penjualan. Itu yang sekarang saya kerjakan lewat Hanucazari Digital.',
+    'Dari situ saya belajar bahwa usaha jarang butuh teknologi yang rumit. Yang dibutuhkan adalah pencatatan rapi, halaman yang mudah ditemukan di Google, dan alur WhatsApp yang membantu penjualan — itulah pendekatan yang saya bawa di Hanucazari Digital maupun saat berkolaborasi dalam tim.',
   ],
   availability: 'Menerima proyek baru dan terbuka untuk tawaran kerja.',
   location: 'Kota Tasikmalaya, Jawa Barat',
@@ -32,10 +33,10 @@ export const projects = [
     client: 'Batu Alam Halfa Barokah',
     year: '2026',
     kind: 'Website',
-    title: 'Website katalog dan mesin pencari prospek',
+    title: 'Website katalog produk dan formulir konsultasi WhatsApp',
     summary:
-      'Toko batu alam di Tasikmalaya yang sebelumnya hanya mengandalkan pembeli datang langsung. Saya membangun website katalog lengkap dengan halaman produk, artikel, halaman kampanye iklan, formulir konsultasi, dan panel admin untuk mengelola semuanya.',
-    result: 'Bersama kampanye Meta Ads yang saya jalankan, omzet toko naik sekitar 150%.',
+      'Usaha batu alam keluarga yang sebelumnya hanya mengandalkan pembeli datang ke toko. Saya membangun website katalog 90+ produk, artikel edukasi, halaman kampanye iklan, panel admin internal, serta menghubungkannya dengan kampanye Meta Ads.',
+    result: 'Website tayang aktif di batualamhalfabarokah.com bersama kampanye iklan Meta ke WhatsApp.',
     stack: ['Laravel 12', 'Blade', 'Tailwind CSS', 'Alpine.js', 'MySQL'],
     link: { href: 'https://batualamhalfabarokah.com', label: 'batualamhalfabarokah.com' },
   },
@@ -46,8 +47,8 @@ export const projects = [
     kind: 'Aplikasi internal',
     title: 'Sistem penjualan dan keuangan toko',
     summary:
-      'Nota penjualan sebelumnya ditulis tangan dan stok sering selisih. Sistem ini mencatat nota, penawaran harga, piutang pelanggan, buku kas tunai dan bank, lalu menyusun laporan harian dan bulanan yang bisa diunduh ke Excel.',
-    result: 'Dipakai setiap hari oleh pemilik dan admin toko.',
+      'Sebelumnya nota penjualan ditulis tangan sehingga rekap piutang dan kas harian harus dihitung ulang manual. Sistem ini menangani pembuatan nota, penawaran harga (RAB), pemantauan piutang pelanggan, pencatatan buku kas tunai dan bank, hingga ekspor laporan harian/bulanan ke Excel.',
+    result: 'Berjalan untuk pencatatan operasional internal toko.',
     stack: ['Laravel 13', 'MySQL', 'Tailwind CSS'],
     note: 'Aplikasi internal, tidak dibuka untuk publik.',
   },
@@ -58,8 +59,8 @@ export const projects = [
     kind: 'Aplikasi kasir',
     title: 'Kasir dan stok untuk kios makanan',
     summary:
-      'Aplikasi kasir untuk kios cemilan: transaksi di layar sentuh, buka dan tutup shift, pengelolaan menu, stok bahan, dan laporan penjualan per hari.',
-    result: 'Berjalan di kios sejak Oktober 2026.',
+      'Kios makanan membutuhkan pencatatan transaksi cepat tanpa bergantung hitung manual akhir shift. Saya membangun aplikasi kasir layar sentuh lengkap dengan buka-tutup shift, pemotongan stok otomatis, pengaturan menu/toping, serta laporan omzet harian dan laba kotor untuk pemilik.',
+    result: 'Aktif digunakan di gerai Dadaha sejak Oktober 2026.',
     stack: ['Laravel 13', 'Sanctum', 'React 19', 'Zustand'],
     link: { href: 'https://cemilansigaiia.my.id', label: 'cemilansigaiia.my.id' },
   },
@@ -68,9 +69,10 @@ export const projects = [
     client: 'TSY Bag',
     year: '2026',
     kind: 'Landing page',
-    title: 'Halaman penjualan produsen tas',
+    title: 'Halaman penjualan (landing page) produsen tas',
     summary:
-      'Produsen tas di Tasikmalaya yang ramai di marketplace dan live streaming, tapi belum punya halaman sendiri. Saya menyusun naskah penjualan dan membangun halaman yang mengarahkan pembeli ke WhatsApp dan toko resminya.',
+      'Produsen tas di Tasikmalaya yang sebelumnya hanya mengandalkan kanal marketplace dan belum memiliki halaman rujukan sendiri. Saya menulis naskah penawaran dan membangun landing page yang merangkum keunggulan produk serta mengarahkan calon pembeli ke WhatsApp dan toko resminya.',
+    result: 'Tayang aktif di tsybag.vercel.app sebagai etalase resmi klien.',
     stack: ['React', 'Vite', 'Tailwind CSS', 'Vercel'],
     link: { href: 'https://tsybag.vercel.app', label: 'tsybag.vercel.app' },
   },
@@ -78,11 +80,11 @@ export const projects = [
     id: 'ks-motor',
     client: 'KS Motor Tasikmalaya',
     year: '2024 - 2025',
-    kind: 'Iklan dan penjualan',
+    kind: 'Riwayat kerja · Iklan & penjualan',
     title: 'Iklan mobil bekas yang berujung ke showroom',
     summary:
-      'Penjualan dari kanal digital mentok di 5 unit per bulan karena banyak penanya yang tidak serius. Saya menjalankan Meta Ads dengan anggaran sekitar Rp 3 juta per bulan, membuat video inspeksi unit, dan menyusun skrip WhatsApp untuk menyaring calon pembeli sebelum diajak survei.',
-    result: 'Penjualan dari kanal digital naik dari maksimal 5 unit menjadi 13 unit per bulan.',
+      'Banyak calon pembeli dari media sosial hanya bertanya harga tanpa niat datang ke showroom. Selama bertugas sebagai Digital Marketing Specialist, saya mengelola iklan Meta Ads (anggaran sekitar Rp 3 juta/bulan), memproduksi video inspeksi unit (mesin, interior, surat), dan menyusun alur kualifikasi chat WhatsApp sebelum menjadwalkan survei.',
+    result: 'Sistem penyaringan chat membantu tim showroom fokus melayani calon pembeli yang siap survei unit.',
     stack: ['Meta Ads', 'WhatsApp', 'CapCut'],
   },
 ];
@@ -97,7 +99,7 @@ export const experience = [
     points: [
       'Membangun dan merawat aplikasi untuk klien usaha lokal: kasir dan stok kios makanan (Laravel 13 dan React 19) serta landing page produsen tas (React dan Vite).',
       'Menangani proyek dari wawancara kebutuhan, perancangan, pengembangan, hingga deploy ke cPanel dan Vercel.',
-      'Menyusun identitas merek, paket layanan, dan platform web studio.',
+      'Menyusun standar brief, dokumentasi serah terima, dan paket layanan terukur untuk website, aplikasi kasir, dan pengelolaan iklan usaha.',
     ],
   },
   {
@@ -109,7 +111,7 @@ export const experience = [
     points: [
       'Membangun website katalog batualamhalfabarokah.com dengan Laravel, Tailwind CSS, dan MySQL, termasuk panel admin untuk produk, artikel, dan prospek.',
       'Membangun sistem penjualan dan keuangan internal yang menggantikan nota tulis tangan: nota, penawaran, piutang, kas, dan laporan.',
-      'Menjalankan Meta Ads berbasis WhatsApp dan memproduksi video produk sendiri; omzet toko naik sekitar 150%.',
+      'Menjalankan kampanye Meta Ads (Click-to-WhatsApp) dan memproduksi konten video produk untuk mendatangkan konsultasi calon pembeli.',
       'Menyusun SOP penanganan prospek WhatsApp dan koordinasi pengiriman pesanan.',
     ],
   },
@@ -120,7 +122,7 @@ export const experience = [
     period: 'Jun 2024 - Mei 2025',
     location: 'Tasikmalaya',
     points: [
-      'Menaikkan penjualan mobil bekas dari kanal digital dari maksimal 5 menjadi 13 unit per bulan dengan anggaran Meta Ads sekitar Rp 3 juta per bulan.',
+      'Mengelola kampanye Meta Ads showroom dengan anggaran sekitar Rp 3 juta/bulan untuk mendatangkan calon pembeli serius ke WhatsApp.',
       'Menyusun skrip kualifikasi WhatsApp untuk menyaring calon pembeli serius sebelum diajak survei ke showroom.',
       'Memproduksi video inspeksi unit: kondisi mesin, interior, dan kelengkapan surat.',
     ],
@@ -143,7 +145,7 @@ export const experience = [
     period: 'Apr 2023 - Nov 2023',
     location: 'Tasikmalaya',
     points: [
-      'Membangun website company profile dengan Laravel.',
+      'Membangun website company profile biro umroh berbasis Laravel untuk menampilkan informasi paket perjalanan dan formulir kontak jamaah.',
       'Menutup penjualan 4 paket umroh melalui konsultasi langsung dengan keluarga calon jamaah.',
       'Mengelola media sosial dan menyusun template balasan serta SOP tindak lanjut calon jamaah.',
     ],
@@ -156,7 +158,7 @@ export const experience = [
     location: 'Tasikmalaya',
     points: [
       'Mengelola administrasi transaksi harian, kas kecil, dan uang muka showroom.',
-      'Memeriksa kelengkapan STNK, BPKB, dan faktur sebelum serah terima unit.',
+      'Memeriksa kelengkapan dokumen legalitas unit (STNK, BPKB, faktur) sebelum serah terima untuk mencegah selisih administrasi.',
       'Memotret, mengedit, dan menjadwalkan konten stok mobil di media sosial.',
     ],
   },
@@ -167,7 +169,7 @@ export const experience = [
     period: 'Agu 2020 - Jan 2022',
     location: 'Tasikmalaya',
     points: [
-      'Memimpin 2 tim sales lapangan (10+ orang) untuk penjualan door-to-door IndiHome dan mengawasi target bulanan.',
+      'Memimpin 2 tim sales lapangan (10+ orang) untuk penjualan door-to-door layanan IndiHome serta mengevaluasi pencapaian target harian dan bulanan.',
       'Melatih teknik canvassing, negosiasi, dan penanganan keberatan pelanggan.',
       'Menyusun laporan produktivitas harian dan berkoordinasi dengan teknisi pemasangan.',
     ],
@@ -183,7 +185,7 @@ export const skills = [
   {
     id: 'marketing',
     group: 'Pemasaran digital',
-    items: ['Meta Ads (Facebook dan Instagram)', 'Google Analytics 4', 'Google Tag Manager', 'Google Search Console', 'SEO on-page'],
+    items: ['Meta Ads & Meta Conversions API (CAPI)', 'Google Analytics 4 & Tag Manager', 'Google Search Console', 'SEO Teknis & On-Page'],
   },
   {
     id: 'sales',
@@ -193,7 +195,7 @@ export const skills = [
   {
     id: 'ops',
     group: 'Operasional dan konten',
-    items: ['Penyusunan SOP', 'Pengawasan proyek lapangan', 'Administrasi dan kas', 'Video produk (CapCut)'],
+    items: ['Penyusunan SOP', 'Pengawasan proyek lapangan', 'Administrasi dan kas', 'Produksi & editing video iklan produk (CapCut)'],
   },
 ];
 
@@ -216,6 +218,7 @@ export const certificates = [
     issuer: 'Google',
     issued: 'Okt 2025',
     expires: 'Okt 2026',
+    expired: true,
     credentialId: '163022780',
     image: '/certificates/cert-google-analytics.jpg',
   },
@@ -226,6 +229,7 @@ export const certificates = [
     issuer: 'Google',
     issued: 'Okt 2025',
     expires: 'Okt 2026',
+    expired: true,
     credentialId: '163507187',
     image: '/certificates/cert-google-offline-sales.jpg',
   },

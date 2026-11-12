@@ -42,7 +42,9 @@ export default function Header() {
 
         <div className="flex items-center gap-2">
           <div className="hidden sm:block">
-            <DownloadCvButton label="Unduh CV" />
+            <a href="#kontak" className="btn-primary">
+              Hubungi
+            </a>
           </div>
           <button
             type="button"
