@@ -35,8 +35,9 @@ export const projects = [
     kind: 'Website',
     title: 'Website katalog produk dan formulir konsultasi WhatsApp',
     summary:
-      'Usaha batu alam keluarga yang sebelumnya hanya mengandalkan pembeli datang ke toko. Saya membangun website katalog 90+ produk, artikel edukasi, halaman kampanye iklan, panel admin internal, serta menghubungkannya dengan kampanye Meta Ads.',
-    result: 'Website tayang aktif di batualamhalfabarokah.com bersama kampanye iklan Meta ke WhatsApp.',
+      'Usaha batu alam keluarga yang sebelumnya hanya mengandalkan pembeli datang ke toko. Saya membangun website katalog produk, artikel edukasi, halaman kampanye iklan, panel admin internal, serta menghubungkannya dengan kampanye Meta Ads dan Google Ads.',
+    result:
+      'Website tayang aktif dan terhubung dengan kampanye iklan Meta serta Google Ads untuk mengarahkan calon pembeli ke konsultasi WhatsApp.',
     stack: ['Laravel 12', 'Blade', 'Tailwind CSS', 'Alpine.js', 'MySQL'],
     link: { href: 'https://batualamhalfabarokah.com', label: 'batualamhalfabarokah.com' },
   },
@@ -54,7 +55,7 @@ export const projects = [
   },
   {
     id: 'teh-lia',
-    client: 'Teh Lia, Dadaha',
+    client: 'Cemilan Sigaiia',
     year: '2026',
     kind: 'Aplikasi kasir',
     title: 'Kasir dan stok untuk kios makanan',
@@ -62,7 +63,7 @@ export const projects = [
       'Kios makanan membutuhkan pencatatan transaksi cepat tanpa bergantung hitung manual akhir shift. Saya membangun aplikasi kasir layar sentuh lengkap dengan buka-tutup shift, pemotongan stok otomatis, pengaturan menu/toping, serta laporan omzet harian dan laba kotor untuk pemilik.',
     result: 'Aktif digunakan di gerai Dadaha sejak Oktober 2026.',
     stack: ['Laravel 13', 'Sanctum', 'React 19', 'Zustand'],
-    link: { href: 'https://cemilansigaiia.my.id', label: 'cemilansigaiia.my.id' },
+    note: 'Aplikasi internal, tidak dibuka untuk publik.',
   },
   {
     id: 'tsy-bag',
@@ -72,7 +73,8 @@ export const projects = [
     title: 'Halaman penjualan (landing page) produsen tas',
     summary:
       'Produsen tas di Tasikmalaya yang sebelumnya hanya mengandalkan kanal marketplace dan belum memiliki halaman rujukan sendiri. Saya menulis naskah penawaran dan membangun landing page yang merangkum keunggulan produk serta mengarahkan calon pembeli ke WhatsApp dan toko resminya.',
-    result: 'Tayang aktif di tsybag.vercel.app sebagai etalase resmi klien.',
+    result:
+      'Memberi jalur penawaran mandiri di luar marketplace yang langsung menghubungkan calon pembeli ke WhatsApp dan toko resmi.',
     stack: ['React', 'Vite', 'Tailwind CSS', 'Vercel'],
     link: { href: 'https://tsybag.vercel.app', label: 'tsybag.vercel.app' },
   },
@@ -84,7 +86,8 @@ export const projects = [
     title: 'Iklan mobil bekas yang berujung ke showroom',
     summary:
       'Banyak calon pembeli dari media sosial hanya bertanya harga tanpa niat datang ke showroom. Selama bertugas sebagai Digital Marketing Specialist, saya mengelola iklan Meta Ads (anggaran sekitar Rp 3 juta/bulan), memproduksi video inspeksi unit (mesin, interior, surat), dan menyusun alur kualifikasi chat WhatsApp sebelum menjadwalkan survei.',
-    result: 'Sistem penyaringan chat membantu tim showroom fokus melayani calon pembeli yang siap survei unit.',
+    result:
+      'Video inspeksi dan alur kualifikasi WhatsApp membuat calon pembeli yang dijadwalkan survei sudah paham kondisi unit dan kisaran harganya sejak awal.',
     stack: ['Meta Ads', 'WhatsApp', 'CapCut'],
   },
 ];
