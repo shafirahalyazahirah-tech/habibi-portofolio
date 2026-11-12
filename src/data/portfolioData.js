@@ -9,7 +9,7 @@ export const profile = {
   intro:
     'Sejak 2020 saya bekerja langsung di penjualan, operasional showroom, dan pengawasan proyek sebelum membangun sistem digital. Kini saya membuat website katalog, aplikasi dan keuangan, serta kampanye Meta Ads agar usaha kecil punya pencatatan rapi dan alur pembeli lewat WhatsApp.',
   about: [
-    'Saya lulusan Manajemen Informatika Politeknik LP3I dan sudah bekerja sejak 2020: memimpin tim sales lapangan, mengurus operasional showroom, mengawasi proyek pemasangan batu alam, sampai memegang iklan dan website untuk bisnis keluarga.',
+    'Saya lulusan Manajemen Informatika Politeknik LP3I yang sudah bekerja sejak 2020: memimpin tim sales lapangan, mengurus operasional showroom, mengawasi proyek pemasangan batu alam, hingga membangun website, sistem internal, dan iklan untuk usaha lokal.',
     'Dari situ saya belajar bahwa usaha jarang butuh teknologi yang rumit. Yang dibutuhkan adalah pencatatan rapi, halaman yang mudah ditemukan di Google, dan alur WhatsApp yang membantu penjualan — itulah pendekatan yang saya bawa di Hanucazari Digital maupun saat berkolaborasi dalam tim.',
   ],
   availability: 'Menerima proyek baru dan terbuka untuk tawaran kerja.',
@@ -35,7 +35,7 @@ export const projects = [
     kind: 'Website',
     title: 'Website katalog produk dan formulir konsultasi WhatsApp',
     summary:
-      'Usaha batu alam keluarga yang sebelumnya hanya mengandalkan pembeli datang ke toko. Saya membangun website katalog produk, artikel edukasi, halaman kampanye iklan, panel admin internal, serta menghubungkannya dengan kampanye Meta Ads dan Google Ads.',
+      'Toko batu alam di Tasikmalaya yang sebelumnya hanya mengandalkan pembeli datang langsung. Saya membangun website katalog produk, artikel edukasi, halaman kampanye iklan, panel admin internal, serta menghubungkannya dengan kampanye Meta Ads dan Google Ads.',
     result:
       'Website tayang aktif dan terhubung dengan kampanye iklan Meta serta Google Ads untuk mengarahkan calon pembeli ke konsultasi WhatsApp.',
     stack: ['Laravel 12', 'Blade', 'Tailwind CSS', 'Alpine.js', 'MySQL'],
