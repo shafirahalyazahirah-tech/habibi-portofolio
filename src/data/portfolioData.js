@@ -168,11 +168,11 @@ export const experience = [
   {
     id: 'indihome',
     role: 'Area Sales Manager',
-    company: 'PT Ainiyah Indomitra Sejahtera (mitra PT Infomedia Nusantara, IndiHome)',
+    company: 'PT Ainiyah Indomitra Sejahtera (Mitra PT Telkom Indonesia)',
     period: 'Agu 2020 - Jan 2022',
     location: 'Tasikmalaya',
     points: [
-      'Memimpin 2 tim sales lapangan (10+ orang) untuk penjualan door-to-door layanan IndiHome serta mengevaluasi pencapaian target harian dan bulanan.',
+      'Memimpin 2 tim sales lapangan (masing-masing 10+ orang) dalam penjualan door-to-door layanan IndiHome sekaligus memantau pencapaian target harian dan bulanan.',
       'Melatih teknik canvassing, negosiasi, dan penanganan keberatan pelanggan.',
       'Menyusun laporan produktivitas harian dan berkoordinasi dengan teknisi pemasangan.',
     ],
