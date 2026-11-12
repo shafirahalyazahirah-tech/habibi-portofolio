@@ -19,9 +19,9 @@ export default function Hero() {
           <p className="mt-5 max-w-[34rem] text-lg leading-relaxed">{profile.intro}</p>
 
           <div className="mt-8 flex flex-wrap items-start gap-3">
-            <a href="#karya" className="btn-secondary">
+            <a href="#portofolio" className="btn-secondary">
               <ArrowDownRight className="size-4" aria-hidden="true" />
-              Lihat karya
+              Lihat portofolio
             </a>
             <DownloadCvButton />
           </div>

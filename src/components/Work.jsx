@@ -5,8 +5,8 @@ import Section from './Section';
 export default function Work() {
   return (
     <Section
-      id="karya"
-      title="Karya"
+      id="portofolio"
+      title="Portofolio"
       intro="Aplikasi dan kampanye yang saya bangun atau jalankan sendiri, untuk usaha nyata di Tasikmalaya."
     >
       <ol className="divide-y divide-rule">

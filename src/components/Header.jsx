@@ -4,9 +4,9 @@ import { profile } from '../data/portfolioData';
 import DownloadCvButton from './DownloadCvButton';
 
 const sections = [
-  { id: 'karya', label: 'Karya' },
+  { id: 'portofolio', label: 'Portofolio' },
   { id: 'pengalaman', label: 'Pengalaman' },
-  { id: 'keahlian', label: 'Keahlian' },
+  { id: 'skill', label: 'Skill' },
   { id: 'sertifikasi', label: 'Sertifikasi' },
   { id: 'kontak', label: 'Kontak' },
 ];
